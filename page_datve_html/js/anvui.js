@@ -78,7 +78,8 @@ function hoanthanh() {
 
     }
 
-    if(n.indexOf(".") || n.indexOf(",")) return alert("Không đúng định dạng điện thoại!"), $("#phoneNumber").focus(), !1;
+
+    if(n.indexOf(".") !== -1  || n.indexOf(",") !== -1) return alert("Không đúng định dạng điện thoại!"), $("#phoneNumber").focus(), !1;
 
     if(n.length < lenght_requied || n.length > lenght_requied) return alert("Số điện thoại phải " + lenght_requied + " số"), $("#phoneNumber").focus(), !1;
 
