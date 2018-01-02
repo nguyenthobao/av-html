@@ -498,8 +498,9 @@ function hoanthanh() {
             if ($("#loading").show(), 200 != t.code) alert("Đã có lỗi xảy ra, hãy đặt lại!"), $("#hoanthanhbtn").show(), $("#loadingbtn").hide(); else if (1 == e) {
                 setTimeout(function(){
                     var a = "https://dobody-anvui.appspot.com/payment/dopay?vpc_OrderInfo=" + t.results.ticketId + "&vpc_Amount=" + 100 * x + "&phoneNumber=" + n + "&packageName=web";
+                    window.location.href = a
                 }, 3000);
-                window.location.href = a
+                
             } else $("#datthanhcong").show(), $("#hoanthanhbtn").hide(), $("#loadingbtn").hide(), $("#gohomebtn").show();
             $("#loading").hide()
         }
