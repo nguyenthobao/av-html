@@ -1105,3 +1105,18 @@ footer .doitac img:hover{
 .cus-img2 {
     margin: 10px 0px 0px 45px;
 }
+
+img.phone{max-width:200px;}
+
+
+@media screen and (max-width: 768px) {
+
+    .cus-btn{width:100%;}
+    .list-group list-group-item{display: inline !important}
+    .hide-xs{display:none;}
+    .header{margin:10px 0px;}
+    img.phone{width:100%;}
+    .cus-logo{margin:25px 10px 10px 10px;}
+    .thongtin{padding-top:10px;}
+    .menu{margin:10px 0px;}
+}

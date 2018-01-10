@@ -1,6 +1,6 @@
-var x = 0, y = 0, man = 0;
-$(document).ready(function(){
-	var ticketPrice = 0, can_chon_ghe = !0, startPoint = "", endPoint = "", date = "", lang = 1;
+var x = 0, y = 0, man = 0, ghechuyendi, ghechuyenve, tongtiendi, tongtienve, tongtien, thongtinchuyendi;
+$(document).ready(function () {
+    var ticketPrice = 0, can_chon_ghe = !0, startPoint = "", endPoint = "", date = "", lang = 1;
 
     const vn = {
         login: "Đăng nhập",
@@ -85,6 +85,80 @@ $(document).ready(function(){
     };
 
 
+    $('#khuhoi').change(function () {
+        if ($('#khuhoi').is(":checked")) {
+            $('#thanhtoan').hide();
+            $('#hoanthanhbtn').hide();
+            $('#chonkhuhoi').show();
+        } else {
+            $('#thanhtoan').show();
+            $('#hoanthanhbtn').show();
+            $('#chonkhuhoi').hide();
+        }
+    });
+
+    /*Chọn vé khứ hồi*/
+    $('#chonkhuhoi').click(function () {
+        if (ghedachon.length == 0) return alert("Hãy chọn ghế!"), !1;
+        if (ghedachon.length > 10) return alert("Chỉ được chọn dưới 10 ghế!"), !1;
+
+        var routeId = $("#routeId").val();
+
+        var backRoute;
+
+        ghechuyendi = ghedachon;
+        tongtiendi = x;
+
+        thongtinchuyendi = {
+            scheduleId: scheduleId,
+            getInPointId: getInPointId,
+            getOffPointId: getOffPointId,
+            getInTime: getInTime,
+            companyStatus: companyStatus,
+            startDate: startDate,
+            tripId: tripId
+        };
+
+        $('#ghechuyendispan').show();
+        $('#ghechuyendi').text(ghechuyendi);
+        $('#khuhoi').attr('disabled', true);
+        $('#divkhuhoi').show();
+
+        $('#tienchuyendi').text(tongtiendi.format());
+
+        switch (routeId) {
+            case "R02fYyxpuGyyI": //hn-sp valentine
+                $('.cus-btn').hide();
+                backRoute = "R02AaSWQAWl25";
+                break;
+            case "R02AaV2rLPMly": //sp-hn
+                $('.cus-btn').hide();
+                backRoute = "R02AaVE2vdxy5";
+                break;
+            case "R02AaVE2vdxy5": //hn-sp
+                $('.cus-btn').hide();
+                backRoute = "R02AaV2rLPMly";
+                break;
+            case "R02AaSWQAWl25": //sp-hn valentine
+                $('.cus-btn').hide();
+                backRoute = "R02fYyxpuGyyI";
+                break;
+            case "R029a92ewoDKf": //hn-cb
+                $('.cus-btn').hide();
+                backRoute = "R029a8Q39FWIY";
+                break;
+            case "R029a8Q39FWIY": //cb-hn
+                $('.cus-btn').hide();
+                backRoute = "R029a92ewoDKf";
+        }
+
+        $('#'+backRoute).show();
+        $("#routeId").val(backRoute);
+        setPoint(backRoute);
+        $('.datepicker').datepicker('show');
+    });
+
+
     $("#vn").click(function () {
         lang = 1;
         changeLang(lang);
@@ -96,17 +170,16 @@ $(document).ready(function(){
     });
 
 
-	var chuyenav = getParameterByName('chuyenav');
+    var chuyenav = getParameterByName('chuyenav');
     startPoint = getParameterByName('startPoint');
     endPoint = getParameterByName('endPoint');
     date = getParameterByName('date');
-	
-	if(chuyenav !== '' && chuyenav !== null  && startPoint !== '' && startPoint !== null && endPoint !== '' && endPoint !== null && date !== '' && date !== null)
-    {
-        setTimeout(function(){
+
+    if (chuyenav !== '' && chuyenav !== null && startPoint !== '' && startPoint !== null && endPoint !== '' && endPoint !== null && date !== '' && date !== null) {
+        setTimeout(function () {
             setPoint(chuyenav);
 
-            setTimeout(function(){
+            setTimeout(function () {
                 $("#startPoint").val(startPoint);
                 $("#startPoint").change();
                 $("#endPoint").val(endPoint);
@@ -117,10 +190,10 @@ $(document).ready(function(){
         }, 500);
 
     }
-	
-	
+
+
     $(".listchuyen").hide();
-    $('#phoneNumber').on("keypress", function(evt) {
+    $('#phoneNumber').on("keypress", function (evt) {
         var keycode = evt.charCode || evt.keyCode;
 
         switch (keycode) {
@@ -137,11 +210,12 @@ $(document).ready(function(){
     var currentDate = new Date();
     $('.datepicker').datepicker({
         format: "dd-mm-yyyy",
+        minDate: '-0d',
         autoclose: true,
     }).datepicker("setDate", "0");
 
 
-    $('#numberBayby').on("keypress", function(evt) {
+    $('#numberBayby').on("keypress", function (evt) {
         var keycode = evt.charCode || evt.keyCode;
 
         switch (keycode) {
@@ -188,52 +262,49 @@ $(document).ready(function(){
         },
     });
 
-var idAV = $("base").attr("id");
+    var idAV = $("base").attr("id");
 
-	$.ajax({
-		type: "POST", url: "https://anvui.vn/chuyenAV", data: {idAV: idAV}, success: function (result) {
-			var d = 0;
-			$('#chuyenav').append('<div class="item text-center active" id="id'+d+'">');
-			$("#loading").show(), $.each(result.chuyen, function (e, t) {
+    $.ajax({
+        type: "POST", url: "https://anvui.vn/chuyenAV", data: {idAV: idAV}, success: function (result) {
+            var d = 0;
+            $('#chuyenav').append('<div class="item text-center active" id="id' + d + '">');
+            $("#loading").show(), $.each(result.chuyen, function (e, t) {
 
-			    if(result.chuyen.length > 6)
-                {
+                if (result.chuyen.length > 6) {
                     $(".carousel-control").show();
-                }else {
+                } else {
                     $(".carousel-control").hide();
                 }
-				
-				if(e >= d+6)
-					{
-						d +=6;
-						if(d>=result.chuyen.length)
-						{
-							d = result.chuyen.length - 1;
-						}
-						$('#chuyenav').append('<div class="item text-center" id="id'+d+'">');
-						$("#id"+d).append('<button type="button" class="d-inline cus-btn" id="' + t.routeId + '" value="' + t.routeId + '">' + t.routeName + '</button>');
-						$("#id"+d).append('<button type="button" class="d-inline cus-btn" value="' + t.routeId + '">' + t.routeName + '</button>');
-					}
-				else{
-					$("#id"+d).append('<button type="button" class="d-inline cus-btn" id="' + t.routeId + '" value="' + t.routeId + '">' + t.routeName + '</button>');
-					
-				}
 
-			}), $(".cus-select").selectpicker("refresh");
-			var t = result.chuyen[0].routeId;
-			$("#routeId").val(t);
-			$("#chuyenavInput").val(t);
-			$(".cus-btn").click(function () {
-				var t = $(this).val();
-				$("#routeId").val(t);
-				setPoint(t);
-			});
+                if (e >= d + 6) {
+                    d += 6;
+                    if (d >= result.chuyen.length) {
+                        d = result.chuyen.length - 1;
+                    }
+                    $('#chuyenav').append('<div class="item text-center" id="id' + d + '">');
+                    $("#id" + d).append('<button type="button" class="d-inline cus-btn" id="' + t.routeId + '" value="' + t.routeId + '">' + t.routeName + '</button>');
+                    $("#id" + d).append('<button type="button" class="d-inline cus-btn" value="' + t.routeId + '">' + t.routeName + '</button>');
+                }
+                else {
+                    $("#id" + d).append('<button type="button" class="d-inline cus-btn" id="' + t.routeId + '" value="' + t.routeId + '">' + t.routeName + '</button>');
 
-			setPoint(t), $("#loading").hide();
-		}
-	});
-	
-	$("#chuyendoi").click(function () {
+                }
+
+            }), $(".cus-select").selectpicker("refresh");
+            var t = result.chuyen[0].routeId;
+            $("#routeId").val(t);
+            $("#chuyenavInput").val(t);
+            $(".cus-btn").click(function () {
+                var t = $(this).val();
+                $("#routeId").val(t);
+                setPoint(t);
+            });
+
+            setPoint(t), $("#loading").hide();
+        }
+    });
+
+    $("#chuyendoi").click(function () {
         var temp = $("#startPoint").val();
         $("#startPoint").val($("#endPoint").val());
         $("#startPoint").change();
@@ -241,8 +312,12 @@ var idAV = $("base").attr("id");
         $("#endPoint").change();
         return false;
     });
-	
-	$("#TimChuyen").click(function () {
+    
+    $('#tieptuc').click(function () {
+        location.reload();
+    });
+
+    $("#TimChuyen").click(function () {
         var e = $("#startPoint").val(), t = $("#endPoint").val(), n = $("#datetimepicker").val(),
             a = $("#routeId").val();
         $(".datghe").hide();
@@ -252,7 +327,7 @@ var idAV = $("base").attr("id");
 
     function setPoint(e) {
         $(".cus-btn").removeClass('chuyen_active');
-        $("#"+ e +"").addClass('chuyen_active');
+        $("#" + e + "").addClass('chuyen_active');
         $.ajax({
             type: "POST", url: "https://anvui.vn/pointNX", data: {routeId: e}, success: function (e) {
                 $("#startPoint").html(""), $("#endPoint").html(""), $.each(e.a1, function (e, t) {
@@ -266,12 +341,12 @@ var idAV = $("base").attr("id");
         });
 
 
-        setTimeout(function(){
+        setTimeout(function () {
             var startPoint = $("#startPoint").val();
             var endPoint = $("#endPoint").val();
             var date = $("#datetimepicker").val();
             getChuyenDi(startPoint, endPoint, date, e);
-        },1000);
+        }, 1000);
 
 
     }
@@ -290,20 +365,19 @@ var idAV = $("base").attr("id");
 
                     var price = n.ticketPrice1;
 
-                    if(n.displayPrice !== 0)
-                    {
+                    if (n.displayPrice !== 0) {
                         price = n.displayPrice;
                     }
 
                     var a = '<div id="chon_chuyen_' + e + '" onclick="javascript: chon_chuyen(' + e + ');" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 thumbnail" data-id="' + n.tripId + '" data-scheduleId="' + n.scheduleId + '" data-getInPointId="' + n.getInPointId + '" data-getOffPointId="' + n.getOffPointId + '" data-getInTime="' + n.getInTime + '" data-ticketPrice="' + n.ticketPrice + '" data-companyStatus="' + n.companyStatus + '" data-startDate="' + n.startDate + '">' +
-                        '<div class="row"><div class="col-lg-2 col-md-2 col-sm-2 col-xs-9"><img class="img-responsive logo-chuyen" width="100px" height="100px" alt="AN VUI" src="https://anvui.vn/themes/icon/iconChuyenXe.png"></div>' +
-                        '<div class="col-lg-9 col-md-9 col-sm-12 col-xs-9">' +
+                        '<div class="row text-center"><div class="col-lg-2 col-md-2 col-sm-2 col-xs-9"><img class="img-responsive hide-xs logo-chuyen" width="100px" height="100px" alt="AN VUI" src="https://anvui.vn/themes/icon/iconChuyenXe.png"></div>' +
+                        '<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">' +
                         '<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 thongtin"><div class="service-name"> ' + n.companyName + ' </div><div class="service-type">' + n.routeName + '</div></div>' +
                         '<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 thongtin"><div class="service-name time">  </div><div class="service-type">' + n.startTime + '</div></div>' +
                         '<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 thongtin"><div class="service-name line">  </div><div class="service-type"><span class="startTo"></span> ' + n.getInPointName + ' - <span class="from"></span> ' + n.getOffPointAddress + '</div></div>' +
                         '<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 thongtin text-right"><div class="price-vn"> <span style="color: #FF0000">' + price + '</span> VND </div></div>' +
                         '</div>' + // row 9
-                        '</div>'+ //row
+                        '</div>' + //row
                         '</div>';
                     $("#emptymes").hide();
                     $(".listchuyen").append(a), $("#bus-line").show(), $("#chonghe").hide(), $("#thongtin").hide(), t = !1
@@ -311,8 +385,6 @@ var idAV = $("base").attr("id");
             }
         });
     }
-
-
 
 
     function getParameterByName(name, url) {
@@ -328,7 +400,7 @@ var idAV = $("base").attr("id");
 
     function changeLang(lang) {
         var a = '';
-        if(lang == 1){
+        if (lang == 1) {
             a = vn;
         } else {
             a = en;
@@ -381,10 +453,20 @@ function chon_chuyen(e) {
     $("#numberMan").val(0);
     $("#numberBayby").val(0);
 
-    x = 0; y = 0;
+    x = 0;
+    y = 0;
     man = 0;
 
     $("#chon_chuyen_" + e).addClass("selected");
+
+    if(ghechuyendi !== undefined)
+    {
+        $('#thanhtoan').show();
+        $('#hoanthanhbtn').show();
+        $('#chonkhuhoi').hide();
+        $('.chuthich_banchon').text('Ghế chuyến về');
+    }
+
 
 
     if (ghedachon = [], tripId = $(t).attr("data-id"), scheduleId = $(t).attr("data-scheduleId"), getOffPointId = $(t).attr("data-getOffPointId"), getInPointId = $(t).attr("data-getInPointId"), getInTime = $(t).attr("data-getInTime"), ticketPrice = $(t).attr("data-ticketPrice"), companyStatus = $(t).attr("data-companyStatus"), startDate = $(t).attr("data-startDate"), 1 == companyStatus) return $("#goidien").show(), !1;
@@ -394,11 +476,12 @@ function chon_chuyen(e) {
 
         seatMap = e.seatMap.seatList;console.log(seatMap);
         for (var t = "", n = 1; n < e.seatMap.numberOfFloors + 1; n++) {
-            t += '<div class="col-md-6 tachtang"><div class="col-md-12 col-sm-12 col-xs-12 tang' + n + '">Tầng ' + n + "</div>";
+            t += '<div class="col-md-6 col-xs-10 tachtang"><div class="col-md-12 col-sm-12 col-xs-12 tang' + n + '">Tầng ' + n + "</div>";
             for (var a = 1; a < e.seatMap.numberOfRows + 1; a++) for (var i = 1; i < e.seatMap.numberOfColumns + 1; i++) coghe = !1, iddd = "", $.each(e.seatMap.seatList, function (d, o) {
-                var h = o.seatId, c = h.replace(",", "_"); c = c.split(' ').join('-');
-                iddd = n + " " + a + " " + i, o.floor != n || o.row != a || o.column != i || (coghe = !0, t += 2 == o.seatType ? '<div data-id="' + iddd + '" class="col-md-2 ghe_' + e.seatMap.numberOfColumns + '"><div class="chonghe chonghekodcchon driver" >Tài</div></div>' : 1 == o.seatType ? '<div data-id="' + iddd + '" class="col-md-2 ghe_' + e.seatMap.numberOfColumns + '"><div class="chonghe chonghekodcchon door" >Cửa</div></div>' : 5 == o.seatType ? '<div data-id="' + iddd + '" class="col-md-2 ghe_' + e.seatMap.numberOfColumns + '"><div class="chonghe chonghekodcchon" >WC</div></div>' : 6 == o.seatType ? '<div data-id="' + iddd + '" class="col-md-2 ghe_' + e.seatMap.numberOfColumns + '"><div class="chonghe chonghekodcchon assistant" >Phụ</div></div>' : 1 == o.seatStatus ? '<div data=id="' + iddd + '" class="col-md-1 ghe_' + e.seatMap.numberOfColumns + " gheloai_" + o.seatType + '"><div class="chonghe" id="chonghe_' + c + '" onclick="chonghe(\'' + h + "')\">" + h + "</div></div>" : 3 == o.seatStatus ? '<div data=id="' + iddd + '"  class="col-md-2 ghe_' + e.seatMap.numberOfColumns + " gheloai_" + o.seatType + '"><div class="chonghe chonghedathanhtoan" >' + h + "</div></div>"  : '<div data=id="' + iddd + '"  class="col-md-2 ghe_' + e.seatMap.numberOfColumns + " gheloai_" + o.seatType + '"><div class="chonghe chonghekodcchon" >' + h + "</div></div>")
-            }), coghe || (t += '<div data=id="' + iddd + '"  class="col-md-2 ghe_' + e.seatMap.numberOfColumns + ' kocoghe"> </div>');
+                var h = o.seatId, c = h.replace(",", "_");
+                c = c.split(' ').join('-');
+                iddd = n + " " + a + " " + i, o.floor != n || o.row != a || o.column != i || (coghe = !0, t += 2 == o.seatType ? '<div data-id="' + iddd + '" class="col-xs-2 ghe_' + e.seatMap.numberOfColumns + '"><div class="chonghe chonghekodcchon driver" >Tài</div></div>' : 1 == o.seatType ? '<div data-id="' + iddd + '" class="col-xs-2 ghe_' + e.seatMap.numberOfColumns + '"><div class="chonghe chonghekodcchon door" >Cửa</div></div>' : 5 == o.seatType ? '<div data-id="' + iddd + '" class="col-xs-2 ghe_' + e.seatMap.numberOfColumns + '"><div class="chonghe chonghekodcchon" >WC</div></div>' : 6 == o.seatType ? '<div data-id="' + iddd + '" class="col-xs-2 ghe_' + e.seatMap.numberOfColumns + '"><div class="chonghe chonghekodcchon assistant" >Phụ</div></div>' : 1 == o.seatStatus ? '<div data-id="' + iddd + '" class="col-xs-1 ghe_' + e.seatMap.numberOfColumns + " gheloai_" + o.seatType + '"><div class="chonghe" id="chonghe_' + c + '" onclick="chonghe(\'' + h + "')\">" + h + "</div></div>" : 3 == o.seatStatus ? '<div data-id="' + iddd + '"  class="col-xs-2 ghe_' + e.seatMap.numberOfColumns + " gheloai_" + o.seatType + '"><div class="chonghe chonghedathanhtoan" >' + h + "</div></div>" : (o.seatStatus == 2 && o.overTime < Date.now()) ? '<div data-id="' + iddd + '" class="col-xs-1 ghe_' + e.seatMap.numberOfColumns + " gheloai_" + o.seatType + '"><div class="chonghe" id="chonghe_' + c + '" onclick="chonghe(\'' + h + "')\">" + h + "</div></div>" : '<div data-id="' + iddd + '"  class="col-xs-2 ghe_' + e.seatMap.numberOfColumns + " gheloai_" + o.seatType + '"><div class="chonghe chonghekodcchon" >' + h + "</div></div>")
+            }), coghe || (t += '<div data-id="' + iddd + '"  class="col-xs-2 ghe_' + e.seatMap.numberOfColumns + ' kocoghe"> </div>');
             t += "</div>"
         }
         $(".box-chonghe").html(t), $("#loading").hide(), $(".datghe").show();
@@ -410,11 +493,10 @@ function chon_chuyen(e) {
 }
 
 function checknumbaby(e) {
-    if(man >= 0){
+    if (man >= 0) {
         man = ghedachon.length - $("#numberBayby").val();
     }
-    if(man < 0)
-    {
+    if (man < 0) {
         man = 0;
     }
     $("#numberMan").val(man);
@@ -429,16 +511,24 @@ Number.prototype.format = function (e, t) {
 var seatMap;
 
 
-
-function search(nameKey, myArray){
-    for (var i=0; i < myArray.length; i++) {
+function search(nameKey, myArray) {
+    for (var i = 0; i < myArray.length; i++) {
         if (myArray[i].seatId === nameKey) {
             return myArray[i];
         }
     }
 }
 
+/*Hoàn thành đặt vé*/
 function hoanthanh() {
+    var mave;
+    if(ghechuyendi !== undefined){
+        if(ghechuyenve.length !== ghechuyendi.length)
+        {
+            return alert("Hãy chọn "+ghechuyendi.length+" ghế");
+        }
+    }
+
     if (0 == ghedachon.length) return alert("Hãy chọn ghế!"), !1;
     if (ghedachon.length > 10) return alert("Chỉ được chọn dưới 10 ghế!"), !1;
     var e = $("input[name=paymenttype]:checked").val(), t = $("#fullName").val(), n = $("#phoneNumber").val();
@@ -460,9 +550,9 @@ function hoanthanh() {
 
     }
 
-    if(n.indexOf(".") !== -1  || n.indexOf(",") !== -1) return alert("Không đúng định dạng điện thoại!"), $("#phoneNumber").focus(), !1;
+    if (n.indexOf(".") !== -1 || n.indexOf(",") !== -1) return alert("Không đúng định dạng điện thoại!"), $("#phoneNumber").focus(), !1;
 
-    if(n.length < lenght_requied || n.length > lenght_requied) return alert("Số điện thoại phải " + lenght_requied + " số"), $("#phoneNumber").focus(), !1;
+    if (n.length < lenght_requied || n.length > lenght_requied) return alert("Số điện thoại phải " + lenght_requied + " số"), $("#phoneNumber").focus(), !1;
 
 
     if ("" == tripId) return alert("Thiếu dữ liệu!"), !1;
@@ -474,70 +564,170 @@ function hoanthanh() {
     var a = $("#numberBayby").val();
     var man = $("#numberMan").val();
 
-    $("#hoanthanhbtn").hide(), $("#loadingbtn").show(), $.ajax({
-        type: "POST",
-        url: "https://anvui.vn/order-ssl",
-        data: {
-            listSeatId: JSON.stringify(ghedachon),
-            fullName: t,
-            phoneNumber: n,
-            getInPointId: getInPointId,
-            startDate: startDate,
-            getOffPointId: getOffPointId,
-            scheduleId: scheduleId,
-            getInTimePlan: getInTime,
-            originalTicketPrice: x,
-            paymentTicketPrice: x,
-            paymentType: e,
-            paidMoney: 0,
-            tripId: tripId,
-            numberOfAdults: man,
-            numberOfChildren: a
-        },
-        success: function (t) {
-            if ($("#loading").show(), 200 != t.code) alert("Đã có lỗi xảy ra, hãy đặt lại!"), $("#hoanthanhbtn").show(), $("#loadingbtn").hide(); else if (1 == e) {
-                setTimeout(function(){
-                    var a = "https://dobody-anvui.appspot.com/payment/dopay?vpc_OrderInfo=" + t.results.ticketId + "&vpc_Amount=" + 100 * x + "&phoneNumber=" + n + "&packageName=web";
-                    window.location.href = a
-                }, 3000);
-                
-            } else $("#datthanhcong").show(), $("#hoanthanhbtn").hide(), $("#loadingbtn").hide(), $("#gohomebtn").show();
-            $("#loading").hide()
+    $("#hoanthanhbtn").hide(), $("#loadingbtn").show();
+    var paymentCode = generatePaymentCode();
+    if(ghechuyendi !== undefined)
+    {
+        $("#loading").show();
+        // Chuyen di
+        $.ajax({
+            type: "POST",
+            url: "https://anvui.vn/order-ssl",
+            data: {
+                listSeatId: JSON.stringify(ghechuyendi),
+                fullName: t,
+                phoneNumber: n,
+                getInPointId: thongtinchuyendi.getInPointId,
+                startDate: thongtinchuyendi.startDate,
+                getOffPointId: thongtinchuyendi.getOffPointId,
+                scheduleId: thongtinchuyendi.scheduleId,
+                getInTimePlan: thongtinchuyendi.getInTime,
+                originalTicketPrice: tongtiendi,
+                paymentTicketPrice: tongtiendi,
+                paymentType: e,
+                paidMoney: 0,
+                tripId: thongtinchuyendi.tripId,
+                numberOfAdults: man,
+                numberOfChildren: a,
+                paymentCode: paymentCode // Ma thanh toan
+            },
+            success: function (t) {
+
+                if (200 != t.code) {
+                    alert("Đã có lỗi xảy ra, hãy đặt lại!");
+                    $("#hoanthanhbtn").show();
+                    $("#loadingbtn").hide();
+                }
+
+                mave = t.results.ticketId;console.log("Ma ve:"+mave);
+            }
+        });
+
+        //Chuyen ve
+        $.ajax({
+            type: "POST",
+            url: "https://anvui.vn/order-ssl",
+            data: {
+                listSeatId: JSON.stringify(ghechuyenve),
+                fullName: t,
+                phoneNumber: n,
+                getInPointId: getInPointId,
+                startDate: startDate,
+                getOffPointId: getOffPointId,
+                scheduleId: scheduleId,
+                getInTimePlan: getInTime,
+                originalTicketPrice: tongtienve,
+                paymentTicketPrice: tongtienve,
+                paymentType: e,
+                paidMoney: 0,
+                tripId: tripId,
+                numberOfAdults: man,
+                numberOfChildren: a,
+                paymentCode: paymentCode // Ma thanh toan
+            },
+            success: function (t) {
+                if (200 != t.code) {
+                    alert("Đã có lỗi xảy ra, hãy đặt lại!");
+                    $("#hoanthanhbtn").show();
+                    $("#loadingbtn").hide();
+                }
+                mave = mave + "-" + t.results.ticketId;
+                setTimeout(function () {
+                    $("#loading").hide();
+                },1000);
+            }
+        });
+
+        $("#datthanhcong").show(), $("#hoanthanhbtn").hide(), $("#loadingbtn").hide(), $("#gohomebtn").show();
+
+        if(e == 1){
+            setTimeout(function () {
+                var a = "https://dobody-anvui.appspot.com/payment/dopay?vpc_OrderInfo="+mave+"&vpc_Amount=" + 100 * tongtien + "&phoneNumber=" + n + "&packageName=web&paymentCode=" + paymentCode;
+                window.location.href = a
+            }, 1000);
         }
-    })
+
+
+    } else {
+        $.ajax({
+            type: "POST",
+            url: "https://anvui.vn/order-ssl",
+            data: {
+                listSeatId: JSON.stringify(ghedachon),
+                fullName: t,
+                phoneNumber: n,
+                getInPointId: getInPointId,
+                startDate: startDate,
+                getOffPointId: getOffPointId,
+                scheduleId: scheduleId,
+                getInTimePlan: getInTime,
+                originalTicketPrice: x,
+                paymentTicketPrice: x,
+                paymentType: e,
+                paidMoney: 0,
+                tripId: tripId,
+                numberOfAdults: man,
+                numberOfChildren: a
+            },
+            success: function (t) {
+                if ($("#loading").show(), 200 != t.code) alert("Đã có lỗi xảy ra, hãy đặt lại!"), $("#hoanthanhbtn").show(), $("#loadingbtn").hide(); else if (1 == e) {
+                    setTimeout(function () {
+                        var a = "https://dobody-anvui.appspot.com/payment/dopay?vpc_OrderInfo=" + t.results.ticketId + "&vpc_Amount=" + 100 * x + "&phoneNumber=" + n + "&packageName=web";
+                        window.location.href = a
+                    }, 3000);
+
+                } else $("#datthanhcong").show(), $("#hoanthanhbtn").hide(), $("#loadingbtn").hide(), $("#gohomebtn").show();
+                setTimeout(function () {
+                    $("#loading").hide();
+                },1000);
+            }
+        });
+    }
+
+}
+
+// Tạo mã thanh toán
+function generatePaymentCode() {
+    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Date.now();
 }
 
 function chonghe(e) {
-    var t = e.replace(",", "_"), n = ghedachon.indexOf(e);console.log(t);
+    var t = e.replace(",", "_"), n = ghedachon.indexOf(e);
 
     seat = search(e, seatMap);
 
-    if(seat.images[0] === undefined)
-    {
+    if (seat.images[0] === undefined) {
         $(".img1").hide();
     } else {
         $(".img1").show();
         $("#img1").attr("src", seat.images[0]);
     }
 
-    if(seat.images[1] === undefined)
-    {
+    if (seat.images[1] === undefined) {
         $(".img2").hide();
     } else {
         $(".img2").show();
         $("#img2").attr("src", seat.images[1]);
     }
 
-    if(seat.images[2] === undefined)
-    {
+    if (seat.images[2] === undefined) {
         $(".img3").hide();
     } else {
         $(".img3").show();
         $("#img3").attr("src", seat.images[2]);
     }
 
+
+
     if (n > -1) $("#chonghe_" + t.split(' ').join('-')).removeClass("chonghechon"), ghedachon.splice(n, 1); else {
         if (ghedachon.length >= 10) return alert("Chỉ được chọn dưới 10 ghế!"), !1;
+        if(ghechuyendi !== undefined){
+            ghechuyenve = ghedachon;
+            if(ghechuyenve.length >= ghechuyendi.length)
+            {
+                return alert("Hãy chọn "+ghechuyendi.length+" ghế");
+            }
+        }
         $("#chonghe_" + t.split(' ').join('-')).addClass("chonghechon"), ghedachon.push(e)
     }
     xacnhan(seat);
@@ -547,9 +737,7 @@ function xacnhan(seat) {
     if (ghedachon.length > 10) return alert("Chỉ được chọn dưới 10 ghế!"), !1;
     var e = "";
     price = parseInt(ticketPrice) + parseInt(seat.extraPrice);
-console.log(x, ghedachon.length, y);
-    if(ghedachon.length > y)
-    {
+    if (ghedachon.length > y) {
         x += price;
     }
     else {
@@ -561,8 +749,16 @@ console.log(x, ghedachon.length, y);
     }), $("#ghedachonspan").html(e), $(".xacnhanbtn").hide(), $("#thongtin").show();
     var t = $("#numberBayby").val(), n = ghedachon.length - t;
     0 > n && (n = 0, $("#numberBayby").val(ghedachon.length)), $("#numberMan").val(n);
+    if(ghechuyendi !== undefined) {
+        tongtienve = x;
+        tongtien = tongtiendi + tongtienve;
+        $('#tienchuyenve').text(tongtienve.format());
+        $("#priceneedpay").text(tongtien.format());
+    }
+    else {
+        $("#priceneedpay").text(x.format());
+    }
 
-    $("#priceneedpay").text(x.format());
 }
 
 

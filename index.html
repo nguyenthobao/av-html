@@ -27,24 +27,24 @@
 <div id="loading">
     <div class="loader"></div>
 </div>
-<div class="container-fluid">
+<div class="container-fluid" style="margin-bottom:5px;">
 
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="row-fluid header">
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+        <div class="col-sm-4 col-xs-4">
             <img src="image/logo.png" class="img-responsive" alt="Interbuslines">
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 phone-img">
-            <img src="image/phone.png" class="img-responsive" alt="Phone">
+        <div class="col-sm-4 col-xs-4 col-xs-offset-4 col-sm-offset-0">
+            <img src="image/phone.png" class="img-responsive phone" alt="Phone">
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 menu">
+        <div class="col-sm-4 menu">
             <a href="#"><img src="image/vn-icon.png" class="img-responsive pull-right cus-icon" alt="VN Icon" id="vn"></a>
             <a href="#"><img src="image/en-icon.png" class="img-responsive pull-right cus-icon" alt="EN Icon" id="en"></a>
             <select class="pull-right cus-select">
                 <option>VND</option>
                 <option>USD</option>
             </select>
-            <a href="#" class="pull-right cus-login">Đăng nhập</a>
+            <a href="#" class="pull-right hide-xs cus-login">Đăng nhập</a>
         </div>
     </div>
     <div class="clearfix"></div>
@@ -60,21 +60,21 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-0 cus-logo">
 					<div class="row">
 						<div>
-							<div class="col-lg-1 col-md-1 col-sm-6 col-xs-4">
+							<div class="col-lg-1 col-md-1 col-sm-6 hide-xs">
 								<img src="https://anvui.vn/themes/interbusline/image/bus-icon.png" class="img-responsive" alt="Bus" style="width: 60%;">
 							</div>
 						</div>
 
-						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-8" style="left: -15px;">
+						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="left: -15px;margin-bottom:10px">
 							<select class="form-control cus-select" value="startPoint" id="startPoint"
 									data-live-search="true">
 
 							</select>
 						</div>
 
-						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-8">
+						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <div class="row">
-                                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-8 text-center col-lg-offset-0 col-md-offset-0 col-sm-offset-3 col-xs-offset-3">
+                                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 text-right col-lg-offset-0 col-md-offset-0 col-sm-offset-3 col-xs-offset-0 hide-xs">
                                     <a id="chuyendoi" class="chuyendoi" href="#"><i class="fa fa-exchange"></i></a>
                                 </div>
 
@@ -87,7 +87,7 @@
                             </div>
 						</div>
 
-						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-8 col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-4" style="left: -15px; margin-bottom: 20px;">
+						<div class="col-lg-3 col-md-3 col-sm-8 col-xs-8 col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" style="left: -15px;">
 							<div class="has-feedback has-feedback-left">
 								<i class="fa fa-calendar fa-2 form-control-feedback" aria-hidden="true"></i>
 								<input type='text' name="date" value="" class="form-control datepicker"
@@ -95,7 +95,7 @@
 							</div>
 						</div>
 
-						<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2 col-lg-offset-0 col-md-offset-0 col-sm-offset-2 col-xs-offset-6" style="left: -40px;">
+						<div class="col-lg-1 col-md-1 col-sm-4 col-xs-4 col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" style="left: -40px;">
 							<div class="form-group has-feedback has-feedback-left">
 								<button type="button" class="btn btn-default" id="TimChuyen">Tìm kiếm</button>
 							</div>
@@ -112,9 +112,9 @@
 		<div class="clearfix"></div>
     </div>
 
-<hr>
+<hr class="hide-xs">
 
-    <div class="container">
+    <div class="container hide-xs">
         <div class="col-lg-4">
             <img src="image/AnhHD1.jpg" alt="">
         </div>
@@ -213,7 +213,7 @@
 
         </div>
 
-        <div class="col-sm-4 col-md-4 col-lg-4 col-xs-4">
+        <div class="col-sm-4 col-md-4 col-lg-4 col-xs-12">
             <div class="panel panel-default packagesFilter" style="width: 100%; float:left">
                 <form id="form">
                     <div class="panel-heading">
@@ -223,6 +223,11 @@
 
                         <div class="box-thongtin row">
 
+                            <div class="form-group" id="ghechuyendispan" style="display: none">
+                                <label for="ghedachonspan" class="col-sm-4 control-label">Ghế chuyến đi:</label>
+                                <div class="col-sm-8" id="ghechuyendi">
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label for="ghedachonspan" class="col-sm-4 control-label chuthich_banchon">Ghế đã chọn:</label>
                                 <div class="col-sm-8" id="ghedachonspan">
@@ -250,29 +255,43 @@
                                            disabled>
                                 </div>
 
-                                <label for="inputEmail3" class="col-sm-12 control-label"></label>
                                 <label for="numberBayby" class="col-sm-4 control-label numberBayby">Số trẻ em</label>
                                 <div class="col-sm-8">
                                     <input type="number" style="width: 93px;" id="numberBayby"
                                            onchange="checknumbaby(this.value)" class="form-control" value="0" min="0">
                                 </div>
+
                             </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-8">
+                                    <input class="form-check-input" type="checkbox" id="khuhoi">
+                                    <label class="form-check-label" for="khuhoi">
+                                        Khứ hồi
+                                    </label>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </form>
             </div>
 
-            <div class="panel panel-default packagesFilter" style="width: 100%; float:left;">
+            <div class="panel panel-default packagesFilter" id="thanhtoan" style="width: 100%; float:left;">
                 <div class="panel-heading">
                     <h3 class="panel-title payment-title">Hình thức giao dịch</h3>
                 </div>
                 <div class="panel-body transaction" style="padding: 10px;">
+                    <div id="divkhuhoi" style="display: none">
+                        Tiền chuyến đi : <span class="price" id="tienchuyendi"></span> VNĐ<br>
+                        Tiền chuyến về : <span class="price" id="tienchuyenve"></span> VNĐ
+                    </div>
                     <div class="radio">
-                        Số tiền cần thanh toán: <span id="priceneedpay"></span> VNĐ
+                        Số tiền cần thanh toán: <span class="price" id="priceneedpay"></span> VNĐ
                         <br/>
 
                         <i style="color:red; display:none" class="treemmes">* Trẻ em vẫn được tính chỗ và giá vé bằng
-                            <span id="childrenTicketRatio"></span>% vé người lớn. </i>
+                            <span id="childrenTicketRatio1"></span>% vé người lớn. </i>
 
                     </div>
                     <div class="radio">
@@ -304,15 +323,21 @@
                 </div>
                 <div class="panel-body transaction" style="padding: 10px; text-align:center">
 
-                    <h4>Bạn đã hoàn tất đặt vé, chúng tôi sẽ liên hệ với bạn để hoàn thành quá trình đặt vé. Chân thành
-                        cảm ơn!</h4>
-
+                    <h4>Bạn đã giữ chỗ thành công trong 30 phút. <br>
+                        Mời bạn chuyển khoản đến STK 0611006857777 <br>
+                        Chủ TK Nguyen Thanh Tung Vietcombank chi nhánh Ba Đình để xác nhận đặt vé <br>
+                        Trân trọng!
+                    </h4>
+                    <button type="button" id="tieptuc" class="btn btn-success">Tiếp tục đặt vé
+                    </button>
                 </div>
             </div>
             <div class="clearfix"></div>
 
             <center>
                 <button type="button" id="hoanthanhbtn" onclick="hoanthanh()" class="btn btn-danger">Xác nhận đặt vé
+                </button>
+                <button type="button" id="chonkhuhoi" style="display: none" class="btn btn-primary">Chọn chiều về
                 </button>
             </center>
 
@@ -323,7 +348,7 @@
 
     </div>
 </div>
-<hr>
+<hr class="hide-xs">
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-md-6 d-inline">
@@ -335,11 +360,11 @@
                 tính năng chat trực tiếp trên website để gặp nhân viên hỗ trợ.</p>
         </div>
         <div class="col-lg-4 col-md-2">
-            <img src="image/app-icon.png" alt="" class="img-responsive pull-right">
+            <img src="image/app-icon.png" alt="" class="img-responsive pull-right hide-xs">
         </div>
     </div>
 </div>
-<hr>
+<hr class="hide-xs">
 <div class="container-fluid footer-menu">
     <div class="row cus-footer">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 col-lg-offset-2">

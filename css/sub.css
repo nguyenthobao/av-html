@@ -301,7 +301,7 @@ color: #fff;
 .chuthich .chuthich_dathanhtoan {  border-color:#f00; } 
 
 .chuthich .chuthich_banchon {  border-color:#ffcacf; }
-#priceneedpay{
+.price{
   color: red;
   font-weight: bold;
 }
