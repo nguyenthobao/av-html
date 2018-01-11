@@ -152,6 +152,10 @@ $(document).ready(function () {
                 backRoute = "R029a92ewoDKf";
         }
 
+        $("html, body").animate({
+            scrollTop: $('.timchuyen').offset().top
+        }, 1000);
+
         $('#'+backRoute).show();
         $("#routeId").val(backRoute);
         setPoint(backRoute);
@@ -752,6 +756,7 @@ function xacnhan(seat) {
     if(ghechuyendi !== undefined) {
         tongtienve = x;
         tongtien = tongtiendi + tongtienve;
+        tongtien = tongtien - (tongtien*10)/100;
         $('#tienchuyenve').text(tongtienve.format());
         $("#priceneedpay").text(tongtien.format());
     }
