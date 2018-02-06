@@ -316,7 +316,7 @@ $(document).ready(function () {
         $("#endPoint").change();
         return false;
     });
-    
+
     $('#tieptuc').click(function () {
         location.reload();
     });
@@ -639,7 +639,7 @@ function hoanthanh() {
                 mave = mave + "-" + t.results.ticketId;
                 setTimeout(function () {
                     $("#loading").hide();
-                },1000);
+                }, 5000);
             }
         });
 
@@ -649,7 +649,7 @@ function hoanthanh() {
             setTimeout(function () {
                 var a = "https://dobody-anvui.appspot.com/payment/dopay?vpc_OrderInfo="+mave+"&vpc_Amount=" + 100 * tongtien + "&phoneNumber=" + n + "&packageName=web&paymentCode=" + paymentCode;
                 window.location.href = a
-            }, 1000);
+            }, 5000);
         }
 
 
