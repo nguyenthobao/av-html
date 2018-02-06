@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b25b6919-4167-4825-b6dc-db0e05b0f4ea" name="Default" comment="Fix thanh toan">
+    <list default="true" id="b25b6919-4167-4825-b6dc-db0e05b0f4ea" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/anvui.js" afterPath="$PROJECT_DIR$/js/anvui.js" />
     </list>
@@ -17,7 +17,7 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
+            <state relative-caret-position="566">
               <caret line="540" column="33" lean-forward="false" selection-start-line="540" selection-start-column="33" selection-end-line="540" selection-end-column="33" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -35,10 +35,10 @@
       <file leaf-file-name="anvui.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/anvui.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-835">
-              <caret line="679" column="66" lean-forward="false" selection-start-line="679" selection-start-column="66" selection-end-line="679" selection-end-column="66" />
+            <state relative-caret-position="408">
+              <caret line="246" column="42" lean-forward="true" selection-start-line="246" selection-start-column="42" selection-end-line="246" selection-end-column="42" />
               <folding>
-                <marker date="1517908115330" expanded="true" signature="13849:13863" ph="..." />
+                <marker date="1517913329305" expanded="true" signature="14070:14084" ph="..." />
               </folding>
             </state>
           </provider>
@@ -48,7 +48,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>data-id</find>
       <find>data=id</find>
       <find>md</find>
       <find>md-2</find>
@@ -78,6 +77,7 @@
       <find>anvui.js</find>
       <find>chonghe</find>
       <find>tongtienve</find>
+      <find>chonkhuhoi</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -122,6 +122,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -129,12 +131,15 @@
               <item name="av-html" type="b2602c69:ProjectViewProjectNode" />
               <item name="av-html" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
+            <path>
+              <item name="av-html" type="b2602c69:ProjectViewProjectNode" />
+              <item name="av-html" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -178,7 +183,8 @@
       <workItem from="1515991116918" duration="233000" />
       <workItem from="1517891554415" duration="1451000" />
       <workItem from="1517900943800" duration="141000" />
-      <workItem from="1517907226412" duration="981000" />
+      <workItem from="1517907226412" duration="1018000" />
+      <workItem from="1517910892512" duration="3029000" />
     </task>
     <task id="LOCAL-00001" summary="Update">
       <created>1515751423865</created>
@@ -201,17 +207,24 @@
       <option name="project" value="LOCAL" />
       <updated>1517892939269</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Fix thanh toan">
+      <created>1517908225303</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1517908225303</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57599000" />
+    <option name="totallyTimeSpent" value="60665000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18123667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18283582" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -241,7 +254,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Update" />
     <MESSAGE value="Fix giu cho" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix giu cho" />
+    <MESSAGE value="Fix thanh toan" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix thanh toan" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -250,8 +264,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9163">
-          <caret line="540" column="33" lean-forward="false" selection-start-line="540" selection-start-column="33" selection-end-line="540" selection-end-column="33" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -260,24 +274,6 @@
             <element signature="n#style#0;n#div#1;n#div#1;n#div#2;n#div#0;n#div#6;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#2;n#div#0;n#div#6;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#3;n#div#2;n#div#0;n#div#6;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/asda">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="172" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/anvui.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12869">
-          <caret line="757" column="18" lean-forward="false" selection-start-line="757" selection-start-column="8" selection-end-line="757" selection-end-column="18" />
-          <folding>
-            <marker date="1517908115330" expanded="true" signature="13849:13863" ph="..." />
           </folding>
         </state>
       </provider>
@@ -302,7 +298,39 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="172" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/anvui.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12869">
+          <caret line="757" column="18" lean-forward="false" selection-start-line="757" selection-start-column="8" selection-end-line="757" selection-end-column="18" />
+          <folding>
+            <marker date="1517913329305" expanded="true" signature="14070:14084" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9163">
+          <caret line="540" column="33" lean-forward="false" selection-start-line="540" selection-start-column="33" selection-end-line="540" selection-end-column="33" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#4;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#2;n#div#0;n#div#6;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#2;n#div#0;n#div#6;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#div#2;n#div#0;n#div#6;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/asda">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="172" />
         </state>
       </provider>
     </entry>
@@ -311,7 +339,7 @@
         <state relative-caret-position="8364">
           <caret line="492" column="0" lean-forward="true" selection-start-line="492" selection-start-column="0" selection-end-line="492" selection-end-column="0" />
           <folding>
-            <marker date="1517908115330" expanded="true" signature="13849:13863" ph="..." />
+            <marker date="1517913329305" expanded="true" signature="14070:14084" ph="..." />
           </folding>
         </state>
       </provider>
@@ -337,7 +365,7 @@
         <state relative-caret-position="8636">
           <caret line="508" column="0" lean-forward="false" selection-start-line="508" selection-start-column="0" selection-end-line="508" selection-end-column="0" />
           <folding>
-            <marker date="1517908115330" expanded="true" signature="13849:13863" ph="..." />
+            <marker date="1517913329305" expanded="true" signature="14070:14084" ph="..." />
           </folding>
         </state>
       </provider>
@@ -363,7 +391,7 @@
         <state relative-caret-position="8636">
           <caret line="508" column="0" lean-forward="true" selection-start-line="508" selection-start-column="0" selection-end-line="508" selection-end-column="0" />
           <folding>
-            <marker date="1517908115330" expanded="true" signature="13849:13863" ph="..." />
+            <marker date="1517913329305" expanded="true" signature="14070:14084" ph="..." />
           </folding>
         </state>
       </provider>
@@ -389,7 +417,7 @@
         <state relative-caret-position="8109">
           <caret line="477" column="38" lean-forward="false" selection-start-line="477" selection-start-column="32" selection-end-line="477" selection-end-column="38" />
           <folding>
-            <marker date="1517908115330" expanded="true" signature="13849:13863" ph="..." />
+            <marker date="1517913329305" expanded="true" signature="14070:14084" ph="..." />
           </folding>
         </state>
       </provider>
@@ -415,7 +443,7 @@
         <state relative-caret-position="8109">
           <caret line="477" column="38" lean-forward="false" selection-start-line="477" selection-start-column="32" selection-end-line="477" selection-end-column="38" />
           <folding>
-            <marker date="1517908115330" expanded="true" signature="13849:13863" ph="..." />
+            <marker date="1517913329305" expanded="true" signature="14070:14084" ph="..." />
           </folding>
         </state>
       </provider>
@@ -441,7 +469,7 @@
         <state relative-caret-position="5559">
           <caret line="327" column="94" lean-forward="false" selection-start-line="327" selection-start-column="94" selection-end-line="327" selection-end-column="94" />
           <folding>
-            <marker date="1517908115330" expanded="true" signature="13849:13863" ph="..." />
+            <marker date="1517913329305" expanded="true" signature="14070:14084" ph="..." />
           </folding>
         </state>
       </provider>
@@ -467,7 +495,7 @@
         <state relative-caret-position="8194">
           <caret line="482" column="1404" lean-forward="false" selection-start-line="482" selection-start-column="1404" selection-end-line="482" selection-end-column="1404" />
           <folding>
-            <marker date="1517908115330" expanded="true" signature="13849:13863" ph="..." />
+            <marker date="1517913329305" expanded="true" signature="14070:14084" ph="..." />
           </folding>
         </state>
       </provider>
@@ -493,7 +521,7 @@
         <state relative-caret-position="1887">
           <caret line="111" column="18" lean-forward="false" selection-start-line="111" selection-start-column="8" selection-end-line="111" selection-end-column="18" />
           <folding>
-            <marker date="1517908115330" expanded="true" signature="13849:13863" ph="..." />
+            <marker date="1517913329305" expanded="true" signature="14070:14084" ph="..." />
           </folding>
         </state>
       </provider>
@@ -519,7 +547,7 @@
         <state relative-caret-position="1921">
           <caret line="113" column="0" lean-forward="false" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="53" />
           <folding>
-            <marker date="1517908115330" expanded="true" signature="13849:13863" ph="..." />
+            <marker date="1517913329305" expanded="true" signature="14070:14084" ph="..." />
           </folding>
         </state>
       </provider>
@@ -539,9 +567,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/asda">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="172" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="566">
           <caret line="540" column="33" lean-forward="false" selection-start-line="540" selection-start-column="33" selection-end-line="540" selection-end-column="33" />
           <folding>
             <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -555,14 +590,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/asda">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="172" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/anvui - Copy.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -573,10 +600,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/anvui.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-835">
-          <caret line="679" column="66" lean-forward="false" selection-start-line="679" selection-start-column="66" selection-end-line="679" selection-end-column="66" />
+        <state relative-caret-position="408">
+          <caret line="246" column="42" lean-forward="true" selection-start-line="246" selection-start-column="42" selection-end-line="246" selection-end-column="42" />
           <folding>
-            <marker date="1517908115330" expanded="true" signature="13849:13863" ph="..." />
+            <marker date="1517913329305" expanded="true" signature="14070:14084" ph="..." />
           </folding>
         </state>
       </provider>

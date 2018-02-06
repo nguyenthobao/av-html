@@ -159,7 +159,10 @@ $(document).ready(function () {
         $('#'+backRoute).show();
         $("#routeId").val(backRoute);
         setPoint(backRoute);
-        $('.datepicker').datepicker('show');
+
+        $('.datepicker').datepicker({
+            show: true
+        });
     });
 
 
@@ -214,9 +217,13 @@ $(document).ready(function () {
     var currentDate = new Date();
     $('.datepicker').datepicker({
         format: "dd-mm-yyyy",
-        minDate: '-0d',
-        autoclose: true,
-    }).datepicker("setDate", "0");
+        // minDate: '-0d',
+        autoclose: true
+    }).datepicker("setDate", "0").on('changeDate',function(){
+        var e = $("#startPoint").val(), t = $("#endPoint").val(), n = $(this).val(),
+            a = $("#routeId").val();
+        getChuyenDi(e, t, n, a);
+    });
 
 
     $('#numberBayby').on("keypress", function (evt) {
