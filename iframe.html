@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
     <title>Đặt vé trực tuyến</title>
-	<base id="TC1OHntfnujP"/>
+	<base id="TC02mr8AAsbdDu"/>
 	<base target="_blank">
 	<!-- Bootstrap -->
-	<link rel="stylesheet" href="https://anvui.vn/themes/interbusline/css/bootstrap.css">
-	<link rel="stylesheet" href="css/font-awesome.min.css">
-	<link rel="stylesheet" href="libs/bootstrap-select/css/bootstrap-select.min.css">
+	<link rel="stylesheet" href="https://anvui.vn/themes/hathanh/css/bootstrap.css">
+	<link rel="stylesheet" href="https://anvui.vn/themes/hathanh/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://anvui.vn/themes/hathanh/libs/bootstrap-select/css/bootstrap-select.min.css">
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -29,9 +29,9 @@
 
 		#exTab1 .tab-content {
 			color : white;
-			background-color: #e6e1da;
+			background-color: #feeed8;
 			padding : 5px 15px;
-            width: 850px;
+            width: 865px;
 		}
 
 		#exTab1 .nav-pills > li > a {
@@ -40,14 +40,14 @@
 		}
 
 		.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus, .nav-pills > li > a:hover {
-			color: #0b647e !important;
+			color: #374a92 !important;
 			font-weight: normal !important;
-			background-color: #e6e1da !important;
+			background-color: #feeed8 !important;
 		}
 
 		#exTab1 .nav-pills > li {
 			margin-left: 0px;
-			background-color: #0c83a7;
+			background-color: #374a92;
 		}
 
 		.cus-btn {
@@ -62,12 +62,12 @@
 		}
 
 		.cus-btn:hover {
-			background-color: #178fb0;
+			background-color: #374a92;
 			color: #FFFFFF;
 		}
 
 		.btn-active {
-			background-color: #178fb0;
+			background-color: #374a92;
 			color: #FFFFFF;
 		}
 
@@ -86,13 +86,13 @@
 
 		.TimChuyen {
 			border: solid 2px #dba510;
-			background-color: #FFFFFF;
+			background-color: #ec3337;
 			font-weight: 500;
-			color: #dba510;
+			color: #ffffff;
 		}
 
 		.TimChuyen:hover {
-			background-color: #dba510;
+			background-color: #374a92;
 			color: #FFFFFF;
 		}
 
@@ -134,8 +134,11 @@
 <div id="exTab1" class="container">
 	<ul  class="nav nav-pills">
 		<li class="active"> <a href="#datonline" data-toggle="tab" ><i class="fa fa-calendar-minus-o fa-2"></i> ĐẶT VÉ ONLINE</a></li>
-		<li> <a href="#hanoisapa" data-toggle="tab" ><img src="https://anvui.vn/themes/interbusline/image/hot.gif"> HÀ NỘI - SAPA (InterValentine)</a></li>
-		<li> <a href="#sapahanoi" data-toggle="tab" ><img src="https://anvui.vn/themes/interbusline/image/hot.gif"> SAPA - HÀ NỘI (InterValentine)</a></li>
+		<li> <a href="#hanoisapa" data-toggle="tab" ><img src="https://anvui.vn/themes/hathanh/image/hot.gif"> Vân Đồn - Hà Nội</a></li>
+		<li> <a href="#sapahanoi" data-toggle="tab" ><img src="https://anvui.vn/themes/hathanh/image/hot.gif"> Hà Nội - Vân Đồn</a></li>
+		<li> <a href="http://hathanhlimousine.com/gioi-thieu/"><i class="fa fa-calendar-minus-o fa-2"></i> Giới thiệu</a></li>
+		<li> <a href="http://hathanhlimousine.com/lich-trinh/"><i class="fa fa-calendar-minus-o fa-2"></i> Lịch trình</a></li>
+		<li> <a href="http://hathanhlimousine.com/lich-trinh/"><i class="fa fa-address-book fa-2"></i> Liên hệ</a></li>
 	</ul>
 
 	<div class="tab-content clearfix">
@@ -145,14 +148,14 @@
 
 			</div>
 			<div class="row">
-				<form action="https://booking.interbuslines.com/">
+				<form action="http://hathanh.nhaxe.vn/dat-ve">
 					<div class="col-lg-8">
 						<div class="col-lg-6 cus-field1">
 							<select class="form-control cus-select" name="startPoint" value="startPoint" id="startPoint"
 									data-live-search="true">
 							</select>
 						</div>
-						<a id="chuyendoi" class="chuyendoi" href="#"><img src="image/Synch.png" style="height: 22px;" alt=""></a>
+						<a id="chuyendoi" class="chuyendoi" href="#"><img src="https://anvui.vn/themes/hathanh/image/Synch.png" style="height: 22px;" alt=""></a>
 						<div class="col-lg-6 cus-field2">
 							<select class="form-control cus-select" name="endPoint" value="endPoint" id="endPoint"
 									data-live-search="true">
@@ -173,7 +176,7 @@
 							</div>
 						</div>
 					</div>
-					<input type="hidden" id="routeId" name="chuyenav">
+					<input type="hidden" id="routeId" name="routeId">
 				</form>
 			</div>
 		</div>
@@ -181,14 +184,14 @@
 		<!--Dat ve hanoi - sapa valentine-->
 		<div class="tab-pane" id="hanoisapa">
 			<div class="row">
-				<form action="https://booking.interbuslines.com/">
+				<form action="http://hathanh.nhaxe.vn/dat-ve">
 					<div class="col-lg-8">
 						<div class="col-lg-6 cus-field1">
 							<select class="form-control cus-select" name="startPoint" value="startPoint" id="startPointHnSp"
 									data-live-search="true">
 							</select>
 						</div>
-                        <a id="chuyendoi2" class="chuyendoi" href="#"><img src="image/Synch.png" style="height: 22px;" alt=""></a>
+                        <a id="chuyendoi2" class="chuyendoi" href="#"><img src="https://anvui.vn/themes/hathanh/image/Synch.png" style="height: 22px;" alt=""></a>
 						<div class="col-lg-6 cus-field2">
 							<select class="form-control cus-select" name="endPoint" value="endPoint" id="endPointHnSp"
 									data-live-search="true">
@@ -208,7 +211,7 @@
 							</div>
 						</div>
 					</div>
-					<input type="hidden" name="chuyenav" value="R02AaUcVpsShK">
+					<input type="hidden" name="routeId" value="R02mr9qkytCTg">
 				</form>
 			</div>
 		</div>
@@ -216,14 +219,14 @@
 		<!--Dat ve SP - HN-->
 		<div class="tab-pane" id="sapahanoi">
 			<div class="row">
-				<form action="https://booking.interbuslines.com/">
+				<form action="http://hathanh.nhaxe.vn/dat-ve">
 					<div class="col-lg-8">
 						<div class="col-lg-6 cus-field1">
 							<select class="form-control cus-select" name="startPoint" value="startPoint" id="startPointSpHn"
 									data-live-search="true">
 							</select>
 						</div>
-                        <a id="chuyendoi3" class="chuyendoi" href="#"><img src="image/Synch.png" style="height: 22px;" alt=""></a>
+                        <a id="chuyendoi3" class="chuyendoi" href="#"><img src="https://anvui.vn/themes/hathanh/image/Synch.png" style="height: 22px;" alt=""></a>
 						<div class="col-lg-6 cus-field2">
 							<select class="form-control cus-select" name="endPoint" value="endPoint" id="endPointSpHn"
 									data-live-search="true">
@@ -243,7 +246,7 @@
 							</div>
 						</div>
 					</div>
-					<input type="hidden" name="chuyenav" value="R02AaSWQAWl25">
+					<input type="hidden" name="routeId" value="R02mr9pch2i3k">
 				</form>
 			</div>
 		</div>
@@ -252,9 +255,9 @@
 </div>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="https://anvui.vn/themes/interbusline/js/jquery-1.11.3.min.js"></script>
+	<script src="https://anvui.vn/themes/hathanh/js/jquery-1.11.3.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="https://anvui.vn/themes/interbusline/js/bootstrap.js"></script>
+	<script src="https://anvui.vn/themes/hathanh/js/bootstrap.js"></script>
 	<!--  Datepicker 	-->
 	<script src="js/bootstrap-datepicker.min.js"></script>
 	<script src="libs/bootstrap-select/js/bootstrap-select.min.js"></script>

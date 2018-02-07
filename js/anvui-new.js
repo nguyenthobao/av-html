@@ -58,21 +58,37 @@ $(document).ready(function () {
     }
 
 
-    //Truyen gia tri cho HN-SP Valentine
-    setPointHNSP('R02AaUcVpsShK');
+    //Truyen gia tri cho VD-HN
+    setPointDiVe('R02mr9qkytCTg', true);
 
-    function setPointHNSP(e) {
-        $.ajax({
-            type: "POST", url: "https://anvui.vn/pointNX", data: {routeId: e}, success: function (e) {
-                $("#startPointHnSp").html(""), $("#endPointHnSp").html(""), $.each(e.a1, function (e, t) {
-                    var n = '<option value="' + t.pointId + '">' + t.pointName + "</option>";
-                    $("#startPointHnSp").append(n)
-                }), $("#startPointHnSp").selectpicker("refresh"), $.each(e.a2, function (e, t) {
-                    var n = '<option value="' + t.pointId + '">' + t.pointName + "</option>";
-                    $("#endPointHnSp").append(n);
-                }), $("#endPointHnSp").selectpicker("refresh");
-            }
-        })
+    // True di, False ve
+    function setPointDiVe(e, check) {
+        if(check) {
+            $.ajax({
+                type: "POST", url: "https://anvui.vn/pointNX", data: {routeId: e}, success: function (e) {
+                    $("#startPointHnSp").html(""), $("#endPointHnSp").html(""), $.each(e.a1, function (e, t) {
+                        var n = '<option value="' + t.pointId + '">' + t.pointName + "</option>";
+                        $("#startPointHnSp").append(n)
+                    }), $("#startPointHnSp").selectpicker("refresh"), $.each(e.a2, function (e, t) {
+                        var n = '<option value="' + t.pointId + '">' + t.pointName + "</option>";
+                        $("#endPointHnSp").append(n);
+                    }), $("#endPointHnSp").selectpicker("refresh");
+                }
+            });
+        } else {
+            $.ajax({
+                type: "POST", url: "https://anvui.vn/pointNX", data: {routeId: e}, success: function (e) {
+                    $("#startPointSpHn").html(""), $("#endPointSpHn").html(""), $.each(e.a1, function (e, t) {
+                        var n = '<option value="' + t.pointId + '">' + t.pointName + "</option>";
+                        $("#startPointSpHn").append(n)
+                    }), $("#startPointSpHn").selectpicker("refresh"), $.each(e.a2, function (e, t) {
+                        var n = '<option value="' + t.pointId + '">' + t.pointName + "</option>";
+                        $("#endPointSpHn").append(n);
+                    }), $("#endPointSpHn").selectpicker("refresh");
+                }
+            });
+        }
+
     }
 
     $("#chuyendoi2").click(function () {
@@ -84,22 +100,9 @@ $(document).ready(function () {
         return false;
     });
 
-    //Truyen gia tri cho SP - HN Valentine
-    setPointSPHN('R02AaSWQAWl25');
+    //Truyen gia tri cho HN-VD
+    setPointDiVe('R02mr9pch2i3k', false);
 
-    function setPointSPHN(e) {
-        $.ajax({
-            type: "POST", url: "https://anvui.vn/pointNX", data: {routeId: e}, success: function (e) {
-                $("#startPointSpHn").html(""), $("#endPointSpHn").html(""), $.each(e.a1, function (e, t) {
-                    var n = '<option value="' + t.pointId + '">' + t.pointName + "</option>";
-                    $("#startPointSpHn").append(n)
-                }), $("#startPointSpHn").selectpicker("refresh"), $.each(e.a2, function (e, t) {
-                    var n = '<option value="' + t.pointId + '">' + t.pointName + "</option>";
-                    $("#endPointSpHn").append(n);
-                }), $("#endPointSpHn").selectpicker("refresh");
-            }
-        })
-    }
 
     $("#chuyendoi3").click(function () {
         var temp = $("#startPointSpHn").val();
