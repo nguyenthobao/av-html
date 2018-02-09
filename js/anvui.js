@@ -214,7 +214,6 @@ $(document).ready(function () {
         }
     });
 
-    var currentDate = new Date();
     $('.datepicker').datepicker({
         format: "dd-mm-yyyy",
         // minDate: '-0d',
