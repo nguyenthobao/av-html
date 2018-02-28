@@ -335,15 +335,19 @@ $(document).ready(function () {
     });
 
 
-    function setPoint(e) {
+    function setPoint(routeId) {
         $(".cus-btn").removeClass('chuyen_active');
-        $("#" + e + "").addClass('chuyen_active');
+        $("#" + routeId + "").addClass('chuyen_active');
         $.ajax({
-            type: "POST", url: "https://anvui.vn/pointNX", data: {routeId: e}, success: function (e) {
+            type: "POST", url: "https://anvui.vn/pointNX", data: {routeId: routeId}, success: function (e) {
                 $("#startPoint").html(""), $("#endPoint").html(""), $.each(e.a1, function (e, t) {
                     var n = '<option value="' + t.pointId + '">' + t.pointName + "</option>";
-                    $("#startPoint").append(n)
-                    $('#startPoint').val('P00zEi0GvGQdl').change();
+                    $("#startPoint").append(n);
+                    if(routeId == 'R02AaVE2vdxy5' || routeId == 'R02fYyxpuGyyI' || routeId == 'R029a92ewoDKf')
+                    {
+                        $('#startPoint').val('P00zEi0GvGQdl').change();
+                    }
+
                 }), $("#startPoint").selectpicker("refresh"), $.each(e.a2, function (e, t) {
                     var n = '<option value="' + t.pointId + '">' + t.pointName + "</option>";
                     $("#endPoint").append(n)
@@ -356,7 +360,7 @@ $(document).ready(function () {
             var startPoint = $("#startPoint").val();
             var endPoint = $("#endPoint").val();
             var date = $("#datetimepicker").val();
-            getChuyenDi(startPoint, endPoint, date, e);
+            getChuyenDi(startPoint, endPoint, date, routeId);
         }, 1000);
 
 
@@ -485,7 +489,7 @@ function chon_chuyen(e) {
     $.getJSON("https://anvui.vn/dat-ve-ssl?tripId=" + tripId + "&scheduleId=" + scheduleId, function (e) {
         $("#loading").show();
 
-        seatMap = e.seatMap.seatList;console.log(seatMap);
+        seatMap = e.seatMap.seatList;
         for (var t = "", n = 1; n < e.seatMap.numberOfFloors + 1; n++) {
             t += '<div class="col-md-6 col-xs-10 tachtang"><div class="col-md-12 col-sm-12 col-xs-12 tang' + n + '">Tầng ' + n + "</div>";
             for (var a = 1; a < e.seatMap.numberOfRows + 1; a++) for (var i = 1; i < e.seatMap.numberOfColumns + 1; i++) coghe = !1, iddd = "", $.each(e.seatMap.seatList, function (d, o) {
@@ -596,7 +600,7 @@ function hoanthanh() {
                 getInTimePlan: thongtinchuyendi.getInTime,
                 originalTicketPrice: tongtiendi,
                 paymentTicketPrice: tongtiendi,
-                paymentType: e,
+                paymentType: 1,
                 paidMoney: 0,
                 tripId: thongtinchuyendi.tripId,
                 numberOfAdults: man,
@@ -611,7 +615,7 @@ function hoanthanh() {
                     $("#loadingbtn").hide();
                 }
 
-                mave = t.results.ticketId;console.log("Ma ve:"+mave);
+                mave = t.results.ticketId;
             }
         });
 
@@ -630,7 +634,7 @@ function hoanthanh() {
                 getInTimePlan: getInTime,
                 originalTicketPrice: tongtienve,
                 paymentTicketPrice: tongtienve,
-                paymentType: e,
+                paymentType: 1,
                 paidMoney: 0,
                 tripId: tripId,
                 numberOfAdults: man,
@@ -654,9 +658,16 @@ function hoanthanh() {
 
         if(e == 1){
             setTimeout(function () {
-                var a = "https://dobody-anvui.appspot.com/payment/dopay?vpc_OrderInfo="+mave+"&vpc_Amount=" + 100 * tongtien + "&phoneNumber=" + n + "&packageName=web&paymentCode=" + paymentCode;
+                var a = "https://dobody-anvui.appspot.com/inter-payment/dopay?vpc_OrderInfo="+mave+"&vpc_Amount=" + 100 * tongtien + "&phoneNumber=" + n + "&packageName=web&paymentCode=" + paymentCode;
                 window.location.href = a
             }, 5000);
+        }
+
+        if(e == 2) {
+            setTimeout(function () {
+                var a = "https://dobody-anvui.appspot.com/interbuslines/dopay?vpc_OrderInfo=" + t.results.ticketId + "&vpc_Amount=" + 100 * x + "&phoneNumber=" + n + "&packageName=web";
+                window.location.href = a
+            }, 3000);
         }
 
 
@@ -675,7 +686,7 @@ function hoanthanh() {
                 getInTimePlan: getInTime,
                 originalTicketPrice: x,
                 paymentTicketPrice: x,
-                paymentType: e,
+                paymentType: 1,
                 paidMoney: 0,
                 tripId: tripId,
                 numberOfAdults: man,
@@ -684,11 +695,17 @@ function hoanthanh() {
             success: function (t) {
                 if ($("#loading").show(), 200 != t.code) alert("Đã có lỗi xảy ra, hãy đặt lại!"), $("#hoanthanhbtn").show(), $("#loadingbtn").hide(); else if (1 == e) {
                     setTimeout(function () {
-                        var a = "https://dobody-anvui.appspot.com/payment/dopay?vpc_OrderInfo=" + t.results.ticketId + "&vpc_Amount=" + 100 * x + "&phoneNumber=" + n + "&packageName=web";
+                        var a = "https://dobody-anvui.appspot.com/inter-payment/dopay?vpc_OrderInfo=" + t.results.ticketId + "&vpc_Amount=" + 100 * x + "&phoneNumber=" + n + "&packageName=web";
                         window.location.href = a
                     }, 3000);
 
-                } else $("#datthanhcong").show(), $("#hoanthanhbtn").hide(), $("#loadingbtn").hide(), $("#gohomebtn").show();
+                } else if(e == 2) {
+                    setTimeout(function () {
+                        var a = "https://dobody-anvui.appspot.com/interbuslines/dopay?vpc_OrderInfo=" + t.results.ticketId + "&vpc_Amount=" + 100 * x + "&phoneNumber=" + n + "&packageName=web";
+                        window.location.href = a
+                    }, 3000);
+                }
+                else $("#datthanhcong").show(), $("#hoanthanhbtn").hide(), $("#loadingbtn").hide(), $("#gohomebtn").show();
                 setTimeout(function () {
                     $("#loading").hide();
                 },1000);
@@ -746,14 +763,26 @@ function chonghe(e) {
 }
 
 function xacnhan(seat) {
+    var routeId = $("#routeId").val();
     if (ghedachon.length > 10) return alert("Chỉ được chọn dưới 10 ghế!"), !1;
     var e = "";
     price = parseInt(ticketPrice) + parseInt(seat.extraPrice);
     if (ghedachon.length > y) {
-        x += price;
+        /*if(routeId == 'R029a92ewoDKf' || routeId == 'R029a8Q39FWIY')
+        {
+            x += parseInt(price - 30000);
+        } else {*/
+            x += price;
+        // }
+
     }
     else {
-        x -= price;
+       /* if(routeId == 'R029a92ewoDKf' || routeId == 'R029a8Q39FWIY')
+        {
+            x -= parseInt(price - 30000);
+        } else {*/
+            x -= price;
+        // }
     }
     y = ghedachon.length;
     $.each(ghedachon, function (t, n) {
