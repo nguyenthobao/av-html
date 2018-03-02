@@ -658,14 +658,14 @@ function hoanthanh() {
 
         if(e == 1){
             setTimeout(function () {
-                var a = "https://dobody-anvui.appspot.com/inter-payment/dopay?vpc_OrderInfo="+mave+"&vpc_Amount=" + 100 * tongtien + "&phoneNumber=" + n + "&packageName=web&paymentCode=" + paymentCode;
+                var a = "https://dobody-anvui.appspot.com/interbuslines/dopay?vpc_OrderInfo="+mave+"&vpc_Amount=" + 100 * tongtien  + "&phoneNumber=" + n + "&packageName=web&paymentCode=" + paymentCode;
                 window.location.href = a
             }, 5000);
         }
 
         if(e == 2) {
             setTimeout(function () {
-                var a = "https://dobody-anvui.appspot.com/interbuslines/dopay?vpc_OrderInfo=" + t.results.ticketId + "&vpc_Amount=" + 100 * x + "&phoneNumber=" + n + "&packageName=web";
+                var a = "https://dobody-anvui.appspot.com/inter-payment/dopay?vpc_OrderInfo=" + mave + "&vpc_Amount=" + (100 * tongtien + (tongtien * 0.03)*100 + 6500*100) + "&phoneNumber=" + n + "&packageName=web&paymentCode=" + paymentCode;
                 window.location.href = a
             }, 3000);
         }
@@ -695,13 +695,13 @@ function hoanthanh() {
             success: function (t) {
                 if ($("#loading").show(), 200 != t.code) alert("Đã có lỗi xảy ra, hãy đặt lại!"), $("#hoanthanhbtn").show(), $("#loadingbtn").hide(); else if (1 == e) {
                     setTimeout(function () {
-                        var a = "https://dobody-anvui.appspot.com/inter-payment/dopay?vpc_OrderInfo=" + t.results.ticketId + "&vpc_Amount=" + 100 * x + "&phoneNumber=" + n + "&packageName=web";
+                        var a = "https://dobody-anvui.appspot.com/interbuslines/dopay?vpc_OrderInfo=" + t.results.ticketId + "&vpc_Amount=" + 100 * x + "&phoneNumber=" + n + "&packageName=web";
                         window.location.href = a
                     }, 3000);
 
                 } else if(e == 2) {
                     setTimeout(function () {
-                        var a = "https://dobody-anvui.appspot.com/interbuslines/dopay?vpc_OrderInfo=" + t.results.ticketId + "&vpc_Amount=" + 100 * x + "&phoneNumber=" + n + "&packageName=web";
+                        var a = "https://dobody-anvui.appspot.com/inter-payment/dopay?vpc_OrderInfo=" + t.results.ticketId + "&vpc_Amount=" + (100 * x + (x * 0.03)*100 + 6500*100) + "&phoneNumber=" + n + "&packageName=web";
                         window.location.href = a
                     }, 3000);
                 }
@@ -784,6 +784,8 @@ function xacnhan(seat) {
             x -= price;
         // }
     }
+
+
     y = ghedachon.length;
     $.each(ghedachon, function (t, n) {
         e += n + ","
