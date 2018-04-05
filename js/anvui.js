@@ -613,15 +613,15 @@ function hoanthanh() {
                 numberOfChildren: a,
                 paymentCode: paymentCode // Ma thanh toan
             },
-            success: function (t) {
+            success: function (result) {
 
-                if (200 != t.code) {
+                if (200 != result.code) {
                     alert("Đã có lỗi xảy ra, hãy đặt lại!");
                     $("#hoanthanhbtn").show();
                     $("#loadingbtn").hide();
                 }
 
-                mave = t.results.ticketId;
+                mave = result.results.ticketId;
 
                 //Chuyen ve
                 $.ajax({
@@ -660,7 +660,7 @@ function hoanthanh() {
                                 $("#loading").hide();
                                 var a = "https://dobody-anvui.appspot.com/interbuslines/dopay?vpc_OrderInfo="+mave+"&vpc_Amount=" + 100 * tongtien  + "&phoneNumber=" + n + "&packageName=web&paymentCode=" + paymentCode;
                                 window.location.href = a
-                            }, 4000);
+                            }, 1500);
                         }
 
                         if(e == 2) {
@@ -668,7 +668,7 @@ function hoanthanh() {
                                 $("#loading").hide();
                                 var a = "https://dobody-anvui.appspot.com/inter-payment/dopay?vpc_OrderInfo=" + mave + "&vpc_Amount=" + (100 * tongtien + (tongtien * 0.03)*100 + 6500*100) + "&phoneNumber=" + n + "&packageName=web&paymentCode=" + paymentCode;
                                 window.location.href = a
-                            }, 4000);
+                            }, 1500);
                         }
                     },
                     error: function () {
@@ -680,10 +680,6 @@ function hoanthanh() {
                 alert('Đã có lỗi xảy ra, vui lòng đặt lại')
             }
         });
-
-
-
-
     } else {
         $.ajax({
             type: "POST",
