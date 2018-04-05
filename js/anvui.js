@@ -278,6 +278,11 @@ $(document).ready(function () {
         type: "POST", url: "https://anvui.vn/chuyenAV", data: {idAV: idAV}, success: function (result) {
             var d = 0;
             $('#chuyenav').append('<div class="item text-center active" id="id' + d + '">');
+
+            result.chuyen = $.grep(result.chuyen, function(v) {
+                return v.routeId !== "R029a8Q39FWIY" && v.routeId !== "R029a92ewoDKf";
+            });
+
             $("#loading").show(), $.each(result.chuyen, function (e, t) {
 
                 if (result.chuyen.length > 6) {
@@ -600,6 +605,7 @@ function hoanthanh() {
                 getInTimePlan: thongtinchuyendi.getInTime,
                 originalTicketPrice: tongtiendi,
                 paymentTicketPrice: tongtiendi,
+                agencyPrice: tongtien/2,
                 paymentType: 1,
                 paidMoney: 0,
                 tripId: thongtinchuyendi.tripId,
@@ -616,59 +622,66 @@ function hoanthanh() {
                 }
 
                 mave = t.results.ticketId;
-            }
-        });
 
-        //Chuyen ve
-        $.ajax({
-            type: "POST",
-            url: "https://anvui.vn/order-ssl",
-            data: {
-                listSeatId: JSON.stringify(ghechuyenve),
-                fullName: t,
-                phoneNumber: n,
-                getInPointId: getInPointId,
-                startDate: startDate,
-                getOffPointId: getOffPointId,
-                scheduleId: scheduleId,
-                getInTimePlan: getInTime,
-                originalTicketPrice: tongtienve,
-                paymentTicketPrice: tongtienve,
-                paymentType: 1,
-                paidMoney: 0,
-                tripId: tripId,
-                numberOfAdults: man,
-                numberOfChildren: a,
-                paymentCode: paymentCode // Ma thanh toan
+                //Chuyen ve
+                $.ajax({
+                    type: "POST",
+                    url: "https://anvui.vn/order-ssl",
+                    data: {
+                        listSeatId: JSON.stringify(ghechuyenve),
+                        fullName: t,
+                        phoneNumber: n,
+                        getInPointId: getInPointId,
+                        startDate: startDate,
+                        getOffPointId: getOffPointId,
+                        scheduleId: scheduleId,
+                        getInTimePlan: getInTime,
+                        originalTicketPrice: tongtienve,
+                        paymentTicketPrice: tongtienve,
+                        agencyPrice: tongtien/2,
+                        paymentType: 1,
+                        paidMoney: 0,
+                        tripId: tripId,
+                        numberOfAdults: man,
+                        numberOfChildren: a,
+                        paymentCode: paymentCode // Ma thanh toan
+                    },
+                    success: function (t) {
+                        if (200 != t.code) {
+                            alert("Đã có lỗi xảy ra, hãy đặt lại!");
+                            $("#hoanthanhbtn").show();
+                            $("#loadingbtn").hide();
+                        }
+                        mave = mave + "-" + t.results.ticketId;
+                        $("#datthanhcong").show(), $("#hoanthanhbtn").hide(), $("#loadingbtn").hide(), $("#gohomebtn").show();
+
+                        if(e == 1){
+                            setTimeout(function () {
+                                $("#loading").hide();
+                                var a = "https://dobody-anvui.appspot.com/interbuslines/dopay?vpc_OrderInfo="+mave+"&vpc_Amount=" + 100 * tongtien  + "&phoneNumber=" + n + "&packageName=web&paymentCode=" + paymentCode;
+                                window.location.href = a
+                            }, 4000);
+                        }
+
+                        if(e == 2) {
+                            setTimeout(function () {
+                                $("#loading").hide();
+                                var a = "https://dobody-anvui.appspot.com/inter-payment/dopay?vpc_OrderInfo=" + mave + "&vpc_Amount=" + (100 * tongtien + (tongtien * 0.03)*100 + 6500*100) + "&phoneNumber=" + n + "&packageName=web&paymentCode=" + paymentCode;
+                                window.location.href = a
+                            }, 4000);
+                        }
+                    },
+                    error: function () {
+                        alert('Đã có lỗi xảy ra, vui lòng đặt lại')
+                    }
+                });
             },
-            success: function (t) {
-                if (200 != t.code) {
-                    alert("Đã có lỗi xảy ra, hãy đặt lại!");
-                    $("#hoanthanhbtn").show();
-                    $("#loadingbtn").hide();
-                }
-                mave = mave + "-" + t.results.ticketId;
-                setTimeout(function () {
-                    $("#loading").hide();
-                }, 5000);
+            error: function () {
+                alert('Đã có lỗi xảy ra, vui lòng đặt lại')
             }
         });
 
-        $("#datthanhcong").show(), $("#hoanthanhbtn").hide(), $("#loadingbtn").hide(), $("#gohomebtn").show();
 
-        if(e == 1){
-            setTimeout(function () {
-                var a = "https://dobody-anvui.appspot.com/interbuslines/dopay?vpc_OrderInfo="+mave+"&vpc_Amount=" + 100 * tongtien  + "&phoneNumber=" + n + "&packageName=web&paymentCode=" + paymentCode;
-                window.location.href = a
-            }, 5000);
-        }
-
-        if(e == 2) {
-            setTimeout(function () {
-                var a = "https://dobody-anvui.appspot.com/inter-payment/dopay?vpc_OrderInfo=" + mave + "&vpc_Amount=" + (100 * tongtien + (tongtien * 0.03)*100 + 6500*100) + "&phoneNumber=" + n + "&packageName=web&paymentCode=" + paymentCode;
-                window.location.href = a
-            }, 3000);
-        }
 
 
     } else {
@@ -686,6 +699,7 @@ function hoanthanh() {
                 getInTimePlan: getInTime,
                 originalTicketPrice: x,
                 paymentTicketPrice: x,
+                agencyPrice: x,
                 paymentType: 1,
                 paidMoney: 0,
                 tripId: tripId,
