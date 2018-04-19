@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b25b6919-4167-4825-b6dc-db0e05b0f4ea" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change beforePath="$PROJECT_DIR$/js/anvui.js" afterPath="$PROJECT_DIR$/js/anvui.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,34 +15,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="anvui.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="anvui.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/anvui.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="519" column="71" lean-forward="false" selection-start-line="519" selection-start-column="71" selection-end-line="519" selection-end-column="71" />
+            <state relative-caret-position="13362">
+              <caret line="786" column="44" lean-forward="false" selection-start-line="786" selection-start-column="44" selection-end-line="786" selection-end-column="44" />
               <folding>
-                <marker date="1523103241437" expanded="true" signature="14458:14472" ph="..." />
+                <marker date="1524124826519" expanded="true" signature="18355:18369" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="iframe.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/iframe.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="32" column="31" lean-forward="false" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="41" lean-forward="false" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
-              <folding />
+            <state relative-caret-position="152">
+              <caret line="276" column="87" lean-forward="true" selection-start-line="276" selection-start-column="87" selection-end-line="276" selection-end-column="87" />
+              <folding>
+                <element signature="n#style#0;n#input#0;n#div#0;n#div#4;n#div#0;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#div#6;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -50,11 +43,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>interbusline</find>
-      <find>#e6e1da</find>
-      <find>thongtinchuyendi</find>
-      <find>tripId</find>
-      <find>routeId</find>
       <find>startPoint</find>
       <find>P00zEi0GvGQdl</find>
       <find>paymenttype</find>
@@ -68,7 +56,6 @@
       <find>time</find>
       <find>chon_chuyen</find>
       <find>chonghe</find>
-      <find>chonghe(</find>
       <find>money</find>
       <find>startDa</find>
       <find>getPa</find>
@@ -77,9 +64,15 @@
       <find>chuyenav</find>
       <find>tong</find>
       <find>tongtien</find>
-      <find>hoanthanh</find>
       <find>Đã có lỗi xảy ra</find>
       <find>seatMa</find>
+      <find>company</find>
+      <find>id</find>
+      <find>totalMoney</find>
+      <find>thanhtoan</find>
+      <find>promotion</find>
+      <find>chonghe(</find>
+      <find>hoanthanh</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -94,8 +87,8 @@
         <option value="$PROJECT_DIR$/css/respon.css" />
         <option value="$PROJECT_DIR$/iframe.html" />
         <option value="$PROJECT_DIR$/js/anvui-new.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/anvui.js" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -109,7 +102,7 @@
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="168" />
     <option name="y" value="315" />
-    <option name="width" value="1378" />
+    <option name="width" value="1564" />
     <option name="height" value="777" />
   </component>
   <component name="ProjectView">
@@ -207,7 +200,8 @@
       <workItem from="1523098645044" duration="5133000" />
       <workItem from="1523248571979" duration="2261000" />
       <workItem from="1523326754493" duration="3105000" />
-      <workItem from="1524104561644" duration="222000" />
+      <workItem from="1524104561644" duration="14522000" />
+      <workItem from="1524126043650" duration="252000" />
     </task>
     <task id="LOCAL-00001" summary="Update">
       <created>1515751423865</created>
@@ -293,11 +287,18 @@
       <option name="project" value="LOCAL" />
       <updated>1522921464954</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="sua check trang thai ghe theo ve">
+      <created>1524104785225</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1524104785225</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="125669000" />
+    <option name="totallyTimeSpent" value="140221000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -342,7 +343,8 @@
     <MESSAGE value="dang lam thanh toan inter" />
     <MESSAGE value="sua loi khu hoi" />
     <MESSAGE value="sua check trang thai ghe theo ve" />
-    <option name="LAST_COMMIT_MESSAGE" value="sua check trang thai ghe theo ve" />
+    <MESSAGE value="them ma khuyen mai" />
+    <option name="LAST_COMMIT_MESSAGE" value="them ma khuyen mai" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -390,7 +392,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="291" column="58" lean-forward="true" selection-start-line="291" selection-start-column="58" selection-end-line="291" selection-end-column="58" />
-          <folding />
+          <folding>
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#4;n#div#0;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#div#6;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -399,7 +403,7 @@
         <state relative-caret-position="51">
           <caret line="753" column="5" lean-forward="true" selection-start-line="753" selection-start-column="5" selection-end-line="753" selection-end-column="5" />
           <folding>
-            <marker date="1523103241437" expanded="true" signature="14458:14472" ph="..." />
+            <marker date="1524124826519" expanded="true" signature="18355:18369" ph="..." />
           </folding>
         </state>
       </provider>
@@ -649,26 +653,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/iframe.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
+        <state relative-caret-position="17">
           <caret line="32" column="31" lean-forward="false" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="41" lean-forward="false" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/anvui.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="519" column="71" lean-forward="false" selection-start-line="519" selection-start-column="71" selection-end-line="519" selection-end-column="71" />
+        <state relative-caret-position="13362">
+          <caret line="786" column="44" lean-forward="false" selection-start-line="786" selection-start-column="44" selection-end-line="786" selection-end-column="44" />
           <folding>
-            <marker date="1523103241437" expanded="true" signature="14458:14472" ph="..." />
+            <marker date="1524124826519" expanded="true" signature="18355:18369" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="276" column="87" lean-forward="true" selection-start-line="276" selection-start-column="87" selection-end-line="276" selection-end-column="87" />
+          <folding>
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#4;n#div#0;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#div#6;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

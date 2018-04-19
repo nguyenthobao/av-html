@@ -1,4 +1,4 @@
-var x = 0, y = 0, man = 0, ghechuyendi, ghechuyenve, tongtiendi, tongtienve, tongtien, thongtinchuyendi;
+var x = 0, y = 0, man = 0, ghechuyendi, ghechuyenve, tongtiendi, tongtienve, tongtien, thongtinchuyendi, promotionCode, isPromotion = false, promotionMoney = 0, promotionPercent = 0;
 $(document).ready(function () {
     var ticketPrice = 0, can_chon_ghe = !0, startPoint = "", endPoint = "", date = "", lang = 1;
 
@@ -332,6 +332,99 @@ $(document).ready(function () {
         location.reload();
     });
 
+    //Kiểm tra khuyến mại
+    $('#checkPromotion').click(function () {
+        if($('#promotionCode').val() == '') {
+           alert('Bạn chưa nhập khuyến mại');
+            return false;
+        }
+
+        if(!isPromotion) {
+            promotionCode = $('#promotionCode').val();
+            $(this).prop('disabled', true);
+            $.ajax({
+                type: 'POST',
+                url: 'https://dobody-anvui.appspot.com/web_promotion/check',
+                beforeSend: function(request) {
+                    request.setRequestHeader("DOBODY6969", 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2IjowLCJkIjp7InVpZCI6IkFETTExMDk3Nzg4NTI0MTQ2MjIiLCJmdWxsTmFtZSI6IkFkbWluIHdlYiIsImF2YXRhciI6Imh0dHBzOi8vc3RvcmFnZS5nb29nbGVhcGlzLmNvbS9kb2JvZHktZ29ub3cuYXBwc3BvdC5jb20vZGVmYXVsdC9pbWdwc2hfZnVsbHNpemUucG5nIn0sImlhdCI6MTQ5MjQ5MjA3NX0.PLipjLQLBZ-vfIWOFw1QAcGLPAXxAjpy4pRTPUozBpw');
+                },
+                data: {
+                    timeZone: 7,
+                    promotionCode: promotionCode,
+                    companyId: idAV
+                },
+                success: function (data) {
+                    promotionPercent = data.results.result.percent;
+                    promotionMoney = data.results.result.price;
+
+
+                    if(promotionMoney > 0) {
+                        $('#promotionCode').val('Giảm '+promotionMoney.format()+' VND');
+                    } else if(promotionPercent > 0) {
+                        $('#promotionCode').val('Giảm '+promotionPercent*100+' %');
+                    }
+
+                    $('#promotionCode').prop('readonly', true);
+                    $('#checkPromotion').prop('disabled', false);
+
+                    $('#checkPromotion').text('X');
+                    $('#checkPromotion').removeClass('btn-info');
+                    $('#checkPromotion').addClass('btn-danger');
+
+                    if(ghechuyendi !== undefined)
+                    {
+                        if(tongtien > 0) {
+                            if(promotionMoney > 0) {
+                                $('#priceneedpay').text((tongtien - promotionMoney).format()+' VND');
+                            } else if (promotionPercent > 0) {
+                                $('#priceneedpay').text((tongtien - tongtien*promotionPercent).format()+' VND');
+                            }
+                        }
+                    } else {
+                        if(x > 0) {
+                            if(promotionMoney > 0) {
+                                $('#priceneedpay').text((x - promotionMoney).format()+' VND');
+                            } else if (promotionPercent > 0) {
+                                $('#priceneedpay').text((x - x*promotionPercent).format()+' VND');
+                            }
+                        }
+                    }
+
+
+
+                    isPromotion = true;
+
+                },
+                error: function () {
+                    alert('Mã khuyến mại không chính xác');
+                    $('#checkPromotion').prop('disabled', false);
+                }
+            });
+        } else {
+            $('#checkPromotion').text('Kiểm tra');
+            $('#checkPromotion').removeClass('btn-danger');
+            $('#checkPromotion').addClass('btn-info');
+            $('#promotionCode').val('');
+            // $('#promotion').hide();
+            $('#promotionCode').prop('readonly', false);
+
+            promotionPercent = 0;
+            promotionMoney = 0;
+            if(ghechuyendi !== undefined) {
+                if(tongtien > 0) {
+                    $('#priceneedpay').text(tongtien.format()+' VND');
+                }
+            } else {
+                if(x > 0) {
+                    $('#priceneedpay').text(x.format()+' VND');
+                }
+            }
+
+            isPromotion = false;
+        }
+
+    });
+
     $("#TimChuyen").click(function () {
         var e = $("#startPoint").val(), t = $("#endPoint").val(), n = $("#datetimepicker").val(),
             a = $("#routeId").val();
@@ -504,7 +597,6 @@ function chon_chuyen(e) {
                     var lastTicketId = o.listTicketId[o.listTicketCode.length - 1];
                 }
                 if(typeof lastTicketId !== 'undefined' && typeof o.ticketInfo !== 'undefined') {
-                    console.log('ticket', o.ticketInfo[lastTicketId].ticketStatus);
                     ticketStatus = o.ticketInfo[lastTicketId].ticketStatus;
                 } else {
                     ticketStatus = o.seatStatus;
@@ -617,6 +709,22 @@ function hoanthanh() {
     {
         $("#loading").show();
         // Chuyen di
+        if(promotionMoney > 0) {
+            kmdi = tongtiendi - promotionMoney;
+            kmve = tongtienve - promotionMoney;
+        } else if(promotionPercent > 0) {
+            kmdi = tongtiendi - tongtiendi*promotionPercent;
+            kmve = tongtienve - tongtienve*promotionPercent;
+        } else {
+            kmdi = tongtiendi;
+            kmve = tongtienve;
+        }
+
+        tien = (kmdi+kmve) - ((kmdi+kmve)*10/100);
+
+        console.log(kmdi);
+        console.log(kmve);
+
         $.ajax({
             type: "POST",
             url: "https://anvui.vn/order-ssl",
@@ -630,13 +738,14 @@ function hoanthanh() {
                 scheduleId: thongtinchuyendi.scheduleId,
                 getInTimePlan: thongtinchuyendi.getInTime,
                 originalTicketPrice: tongtiendi,
-                paymentTicketPrice: tongtiendi,
+                paymentTicketPrice: kmdi,
                 agencyPrice: tongtien/2,
                 paymentType: 1,
                 paidMoney: 0,
                 tripId: thongtinchuyendi.tripId,
                 numberOfAdults: man,
                 numberOfChildren: a,
+                promotionId: promotionCode,
                 paymentCode: paymentCode // Ma thanh toan
             },
             success: function (result) {
@@ -650,6 +759,7 @@ function hoanthanh() {
                 mave = result.results.ticketId;
 
                 //Chuyen ve
+
                 $.ajax({
                     type: "POST",
                     url: "https://anvui.vn/order-ssl",
@@ -663,13 +773,14 @@ function hoanthanh() {
                         scheduleId: scheduleId,
                         getInTimePlan: getInTime,
                         originalTicketPrice: tongtienve,
-                        paymentTicketPrice: tongtienve,
+                        paymentTicketPrice: kmve,
                         agencyPrice: tongtien/2,
                         paymentType: 1,
                         paidMoney: 0,
                         tripId: tripId,
                         numberOfAdults: man,
                         numberOfChildren: a,
+                        promotionId: promotionCode,
                         paymentCode: paymentCode // Ma thanh toan
                     },
                     success: function (t) {
@@ -684,7 +795,8 @@ function hoanthanh() {
                         if(e == 1){
                             setTimeout(function () {
                                 $("#loading").hide();
-                                var a = "https://dobody-anvui.appspot.com/interbuslines/dopay?vpc_OrderInfo="+mave+"&vpc_Amount=" + 100 * tongtien  + "&phoneNumber=" + n + "&packageName=web&paymentCode=" + paymentCode;
+
+                                var a = "https://dobody-anvui.appspot.com/interbuslines/dopay?vpc_OrderInfo="+mave+"&vpc_Amount=" + 100 * (tien)  + "&phoneNumber=" + n + "&packageName=web&paymentCode=" + paymentCode;
                                 window.location.href = a
                             }, 1500);
                         }
@@ -692,7 +804,7 @@ function hoanthanh() {
                         if(e == 2) {
                             setTimeout(function () {
                                 $("#loading").hide();
-                                var a = "https://dobody-anvui.appspot.com/inter-payment/dopay?vpc_OrderInfo=" + mave + "&vpc_Amount=" + (100 * tongtien + (tongtien * 0.03)*100 + 6500*100) + "&phoneNumber=" + n + "&packageName=web&paymentCode=" + paymentCode;
+                                var a = "https://dobody-anvui.appspot.com/inter-payment/dopay?vpc_OrderInfo=" + mave + "&vpc_Amount=" + (100 * tien + ((tien * 0.03)*100 + 6500*100)) + "&phoneNumber=" + n + "&packageName=web&paymentCode=" + paymentCode;
                                 window.location.href = a
                             }, 1500);
                         }
@@ -707,6 +819,13 @@ function hoanthanh() {
             }
         });
     } else {
+        if(promotionMoney > 0) {
+            km = x - promotionMoney;
+        } else if(promotionPercent > 0) {
+            km = x - x*promotionPercent;
+        } else {
+            km = x;
+        }
         $.ajax({
             type: "POST",
             url: "https://anvui.vn/order-ssl",
@@ -720,10 +839,11 @@ function hoanthanh() {
                 scheduleId: scheduleId,
                 getInTimePlan: getInTime,
                 originalTicketPrice: x,
-                paymentTicketPrice: x,
+                paymentTicketPrice: km,
                 agencyPrice: x,
                 paymentType: 1,
                 paidMoney: 0,
+                promotionId: promotionCode,
                 tripId: tripId,
                 numberOfAdults: man,
                 numberOfChildren: a
@@ -731,13 +851,13 @@ function hoanthanh() {
             success: function (t) {
                 if ($("#loading").show(), 200 != t.code) alert("Đã có lỗi xảy ra, hãy đặt lại!"), $("#hoanthanhbtn").show(), $("#loadingbtn").hide(); else if (1 == e) {
                     setTimeout(function () {
-                        var a = "https://dobody-anvui.appspot.com/interbuslines/dopay?vpc_OrderInfo=" + t.results.ticketId + "&vpc_Amount=" + 100 * x + "&phoneNumber=" + n + "&packageName=web";
+                        var a = "https://dobody-anvui.appspot.com/interbuslines/dopay?vpc_OrderInfo=" + t.results.ticketId + "&vpc_Amount=" + 100 * km + "&phoneNumber=" + n + "&packageName=web";
                         window.location.href = a
                     }, 3000);
 
                 } else if(e == 2) {
                     setTimeout(function () {
-                        var a = "https://dobody-anvui.appspot.com/inter-payment/dopay?vpc_OrderInfo=" + t.results.ticketId + "&vpc_Amount=" + (100 * x + (x * 0.03)*100 + 6500*100) + "&phoneNumber=" + n + "&packageName=web";
+                        var a = "https://dobody-anvui.appspot.com/inter-payment/dopay?vpc_OrderInfo=" + t.results.ticketId + "&vpc_Amount=" + (100 * km + (km * 0.03)*100 + 6500*100) + "&phoneNumber=" + n + "&packageName=web";
                         window.location.href = a
                     }, 3000);
                 }
@@ -832,12 +952,28 @@ function xacnhan(seat) {
         tongtienve = x;
         tongtien = tongtiendi + tongtienve;
         tongtien = tongtien - (tongtien*10)/100;
+
         $('#tienchuyenve').text(tongtienve.format());
-        $("#priceneedpay").text(tongtien.format());
+        if(promotionMoney > 0) {
+            $('#priceneedpay').text((tongtien - promotionMoney).format()+' VND');
+        } else if(promotionPercent > 0) {
+            $('#priceneedpay').text((tongtien - tongtien*promotionPercent).format()+' VND');
+        } else {
+
+            $("#priceneedpay").text(tongtien.format());
+        }
     }
     else {
-        $("#priceneedpay").text(x.format());
+        if(promotionMoney > 0) {
+            $('#priceneedpay').text((x - promotionMoney).format()+' VND');
+        } else if(promotionPercent > 0) {
+            $('#priceneedpay').text((x - x*promotionPercent).format()+' VND');
+        } else {
+            $('#priceneedpay').text(x.format()+' VND');
+        }
     }
+
+
 
 }
 
