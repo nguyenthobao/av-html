@@ -499,8 +499,34 @@ function chon_chuyen(e) {
             t += '<div class="col-md-6 col-xs-10 tachtang"><div class="col-md-12 col-sm-12 col-xs-12 tang' + n + '">Tầng ' + n + "</div>";
             for (var a = 1; a < e.seatMap.numberOfRows + 1; a++) for (var i = 1; i < e.seatMap.numberOfColumns + 1; i++) coghe = !1, iddd = "", $.each(e.seatMap.seatList, function (d, o) {
                 var h = o.seatId, c = h.replace(",", "_");
+                var ticketStatus = 1;
+                if(o.listTicketId.length > 0) {
+                    var lastTicketId = o.listTicketId[o.listTicketCode.length - 1];
+                }
+                if(typeof lastTicketId !== 'undefined' && typeof o.ticketInfo !== 'undefined') {
+                    console.log('ticket', o.ticketInfo[lastTicketId].ticketStatus);
+                    ticketStatus = o.ticketInfo[lastTicketId].ticketStatus;
+                } else {
+                    ticketStatus = o.seatStatus;
+                }
+
                 c = c.split(' ').join('-');
-                iddd = n + " " + a + " " + i, o.floor != n || o.row != a || o.column != i || (coghe = !0, t += 2 == o.seatType ? '<div data-id="' + iddd + '" class="col-xs-2 ghe_' + e.seatMap.numberOfColumns + '"><div class="chonghe chonghekodcchon driver" >Tài</div></div>' : 1 == o.seatType ? '<div data-id="' + iddd + '" class="col-xs-2 ghe_' + e.seatMap.numberOfColumns + '"><div class="chonghe chonghekodcchon door" >Cửa</div></div>' : 5 == o.seatType ? '<div data-id="' + iddd + '" class="col-xs-2 ghe_' + e.seatMap.numberOfColumns + '"><div class="chonghe chonghekodcchon" >WC</div></div>' : 6 == o.seatType ? '<div data-id="' + iddd + '" class="col-xs-2 ghe_' + e.seatMap.numberOfColumns + '"><div class="chonghe chonghekodcchon assistant" >Phụ</div></div>' : 1 == o.seatStatus ? '<div data-id="' + iddd + '" class="col-xs-1 ghe_' + e.seatMap.numberOfColumns + " gheloai_" + o.seatType + '"><div class="chonghe" id="chonghe_' + c + '" onclick="chonghe(\'' + h + "')\">" + h + "</div></div>" : 3 == o.seatStatus ? '<div data-id="' + iddd + '"  class="col-xs-2 ghe_' + e.seatMap.numberOfColumns + " gheloai_" + o.seatType + '"><div class="chonghe chonghedathanhtoan" >' + h + "</div></div>" : (o.seatStatus == 2 && (o.overTime > Date.now() || o.overTime == 0)) ? '<div data-id="' + iddd + '"  class="col-xs-2 ghe_' + e.seatMap.numberOfColumns + " gheloai_" + o.seatType + '"><div class="chonghe chonghekodcchon" >' + h + "</div></div>" : '<div data-id="' + iddd + '" class="col-xs-1 ghe_' + e.seatMap.numberOfColumns + " gheloai_" + o.seatType + '"><div class="chonghe" id="chonghe_' + c + '" onclick="chonghe(\'' + h + "')\">" + h + "</div></div>");
+                iddd = n + " " + a + " " + i, o.floor != n || o.row != a || o.column != i || (coghe = !0, t += 2 == o.seatType ?
+                    '<div data-id="' + iddd + '" class="col-xs-2 ghe_' + e.seatMap.numberOfColumns + '">' +
+                    '<div class="chonghe chonghekodcchon driver" >Tài</div></div>' : 1 == o.seatType ?
+                        '<div data-id="' + iddd + '" class="col-xs-2 ghe_' + e.seatMap.numberOfColumns + '">' +
+                        '<div class="chonghe chonghekodcchon door" >Cửa</div></div>' : 5 == o.seatType ?
+                            '<div data-id="' + iddd + '" class="col-xs-2 ghe_' + e.seatMap.numberOfColumns + '">' +
+                            '<div class="chonghe chonghekodcchon" >WC</div></div>' : 6 == o.seatType ?
+                                '<div data-id="' + iddd + '" class="col-xs-2 ghe_' + e.seatMap.numberOfColumns + '">' +
+                                '<div class="chonghe chonghekodcchon assistant" >Phụ</div></div>' : 1 == ticketStatus ?
+                                    '<div data-id="' + iddd + '" class="col-xs-1 ghe_' + e.seatMap.numberOfColumns + " gheloai_" + o.seatType + '">' +
+                                    '<div class="chonghe" id="chonghe_' + c + '" onclick="chonghe(\'' + h + "')\">" + h + "</div></div>" : 3 == ticketStatus ?
+                                        '<div data-id="' + iddd + '"  class="col-xs-2 ghe_' + e.seatMap.numberOfColumns + " gheloai_" + o.seatType + '">' +
+                                        '<div class="chonghe chonghedathanhtoan" >' + h + "</div></div>" : ((ticketStatus == 2 && (o.overTime > Date.now() || o.overTime == 0)) || ticketStatus == 7) ?
+                                            '<div data-id="' + iddd + '"  class="col-xs-2 ghe_' + e.seatMap.numberOfColumns + " gheloai_" + o.seatType + '">' +
+                                            '<div class="chonghe chonghekodcchon" >' + h + "</div></div>" : '<div data-id="' + iddd + '" class="col-xs-1 ghe_' + e.seatMap.numberOfColumns + " gheloai_" + o.seatType + '">' +
+                                            '<div class="chonghe" id="chonghe_' + c + '" onclick="chonghe(\'' + h + "')\">" + h + "</div></div>");
 
             }), coghe || (t += '<div data-id="' + iddd + '"  class="col-xs-2 ghe_' + e.seatMap.numberOfColumns + ' kocoghe"> </div>');
             t += "</div>"
