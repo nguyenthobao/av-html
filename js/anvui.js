@@ -351,7 +351,8 @@ $(document).ready(function () {
                 data: {
                     timeZone: 7,
                     promotionCode: promotionCode,
-                    companyId: idAV
+                    companyId: idAV,
+                    getInTimePlan:getInTime,
                 },
                 success: function (data) {
                     promotionPercent = data.results.result.percent;
