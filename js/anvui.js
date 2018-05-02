@@ -1,7 +1,7 @@
-var x = 0, y = 0, man = 0, ghechuyendi, ghechuyenve, tongtiendi, tongtienve, tongtien, thongtinchuyendi, promotionCode, isPromotion = false, promotionMoney = 0, promotionPercent = 0;
+var x = 0, y = 0, man = 0, dsghechuyendi, ghechuyenve, tongtiendi, tongtienve, tongtien, thongtinchuyendi, promotionCode, isPromotion = false, promotionMoney = 0, promotionPercent = 0;
 $(document).ready(function () {
     var ticketPrice = 0, can_chon_ghe = !0, startPoint = "", endPoint = "", date = "", lang = 1;
-
+    console.log(dsghechuyendi);
     const vn = {
         login: "Đăng nhập",
         search: "Tìm kiếm",
@@ -106,7 +106,7 @@ $(document).ready(function () {
 
         var backRoute;
 
-        ghechuyendi = ghedachon;
+        dsghechuyendi = ghedachon;
         tongtiendi = x;
 
         thongtinchuyendi = {
@@ -120,7 +120,7 @@ $(document).ready(function () {
         };
 
         $('#ghechuyendispan').show();
-        $('#ghechuyendi').text(ghechuyendi);
+        $('#ghechuyendi').text(dsghechuyendi);
         $('#khuhoi').attr('disabled', true);
         $('#divkhuhoi').show();
 
@@ -372,7 +372,7 @@ $(document).ready(function () {
                     $('#checkPromotion').removeClass('btn-info');
                     $('#checkPromotion').addClass('btn-danger');
 
-                    if(ghechuyendi !== undefined)
+                    if(dsghechuyendi !== undefined)
                     {
                         if(tongtien > 0) {
                             if(promotionMoney > 0) {
@@ -411,7 +411,7 @@ $(document).ready(function () {
 
             promotionPercent = 0;
             promotionMoney = 0;
-            if(ghechuyendi !== undefined) {
+            if(dsghechuyendi !== undefined) {
                 if(tongtien > 0) {
                     $('#priceneedpay').text(tongtien.format()+' VND');
                 }
@@ -573,7 +573,7 @@ function chon_chuyen(e) {
 
     $("#chon_chuyen_" + e).addClass("selected");
 
-    if(ghechuyendi !== undefined)
+    if(dsghechuyendi !== undefined)
     {
         $('#thanhtoan').show();
         $('#hoanthanhbtn').show();
@@ -662,10 +662,10 @@ function search(nameKey, myArray) {
 /*Hoàn thành đặt vé*/
 function hoanthanh() {
     var mave;
-    if(ghechuyendi !== undefined){
-        if(ghechuyenve.length !== ghechuyendi.length)
+    if(dsghechuyendi !== undefined){
+        if(ghechuyenve.length !== dsghechuyendi.length)
         {
-            return alert("Hãy chọn "+ghechuyendi.length+" ghế");
+            return alert("Hãy chọn "+dsghechuyendi.length+" ghế");
         }
     }
 
@@ -706,7 +706,7 @@ function hoanthanh() {
 
     $("#hoanthanhbtn").hide(), $("#loadingbtn").show();
     var paymentCode = generatePaymentCode();
-    if(ghechuyendi !== undefined)
+    if(dsghechuyendi !== undefined)
     {
         $("#loading").show();
         // Chuyen di
@@ -730,7 +730,7 @@ function hoanthanh() {
             type: "POST",
             url: "https://anvui.vn/order-ssl",
             data: {
-                listSeatId: JSON.stringify(ghechuyendi),
+                listSeatId: JSON.stringify(dsghechuyendi),
                 fullName: t,
                 phoneNumber: n,
                 getInPointId: thongtinchuyendi.getInPointId,
@@ -907,11 +907,11 @@ function chonghe(e) {
 
     if (n > -1) $("#chonghe_" + t.split(' ').join('-')).removeClass("chonghechon"), ghedachon.splice(n, 1); else {
         if (ghedachon.length >= 10) return alert("Chỉ được chọn dưới 10 ghế!"), !1;
-        if(ghechuyendi !== undefined){
+        if(dsghechuyendi !== undefined){
             ghechuyenve = ghedachon;
-            if(ghechuyenve.length >= ghechuyendi.length)
+            if(ghechuyenve.length >= dsghechuyendi.length)
             {
-                return alert("Hãy chọn "+ghechuyendi.length+" ghế");
+                return alert("Hãy chọn "+dsghechuyendi.length+" ghế");
             }
         }
         $("#chonghe_" + t.split(' ').join('-')).addClass("chonghechon"), ghedachon.push(e)
@@ -949,7 +949,7 @@ function xacnhan(seat) {
     }), $("#ghedachonspan").html(e), $(".xacnhanbtn").hide(), $("#thongtin").show();
     var t = $("#numberBayby").val(), n = ghedachon.length - t;
     0 > n && (n = 0, $("#numberBayby").val(ghedachon.length)), $("#numberMan").val(n);
-    if(ghechuyendi !== undefined) {
+    if(dsghechuyendi !== undefined) {
         tongtienve = x;
         tongtien = tongtiendi + tongtienve;
         tongtien = tongtien - (tongtien*10)/100;
