@@ -1,4 +1,4 @@
-var x = 0, y = 0, man = 0, dsghechuyendi, ghechuyenve, tongtiendi, tongtienve, tongtien, thongtinchuyendi, promotionCode, isPromotion = false, promotionMoney = 0, promotionPercent = 0;
+var x = 0, y = 0, man = 0, dsghechuyendi, ghechuyenve, tongtiendi, tongtienve, tongtien, thongtinchuyendi, promotionCode, isPromotion = false, promotionMoney = 0, promotionPercent = 0, isRead = 0;
 $(document).ready(function () {
     var ticketPrice = 0, can_chon_ghe = !0, startPoint = "", endPoint = "", date = "", lang = 1;
     console.log(dsghechuyendi);
@@ -84,6 +84,14 @@ $(document).ready(function () {
         term: "Term & Condition",
     };
 
+
+    $('#isRead').change(function () {
+        if ($('#isRead').is(":checked")) {
+            isRead = 1;
+        } else {
+            isRead = 0;
+        }
+    });
 
     $('#khuhoi').change(function () {
         if ($('#khuhoi').is(":checked")) {
@@ -661,6 +669,12 @@ function search(nameKey, myArray) {
 
 /*Hoàn thành đặt vé*/
 function hoanthanh() {
+
+    if(!isRead) {
+        alert('Vui lòng đọc điều khoản trước khi đặt vé');
+        return;
+    }
+
     var mave;
     if(dsghechuyendi !== undefined){
         if(ghechuyenve.length !== dsghechuyendi.length)
@@ -740,7 +754,7 @@ function hoanthanh() {
                 getInTimePlan: thongtinchuyendi.getInTime,
                 originalTicketPrice: tongtiendi,
                 paymentTicketPrice: kmdi,
-                agencyPrice: tongtien/2,
+                agencyPrice: kmdi,
                 paymentType: 1,
                 paidMoney: 0,
                 tripId: thongtinchuyendi.tripId,
@@ -775,7 +789,7 @@ function hoanthanh() {
                         getInTimePlan: getInTime,
                         originalTicketPrice: tongtienve,
                         paymentTicketPrice: kmve,
-                        agencyPrice: tongtien/2,
+                        agencyPrice: kmve,
                         paymentType: 1,
                         paidMoney: 0,
                         tripId: tripId,
@@ -841,7 +855,7 @@ function hoanthanh() {
                 getInTimePlan: getInTime,
                 originalTicketPrice: x,
                 paymentTicketPrice: km,
-                agencyPrice: x,
+                agencyPrice: km,
                 paymentType: 1,
                 paidMoney: 0,
                 promotionId: promotionCode,
